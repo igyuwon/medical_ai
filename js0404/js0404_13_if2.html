@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if</title>
+    <script>
+        // 입력방식 : alert, prompt, confirm
+
+        // var result = confirm("글쓰기를 취소하시겠습니까?");
+        
+        function writeBtn(){
+            if(confirm("글쓰기를 취소하시겠습니까?")){
+                document.write("취소합니다.")
+            }       
+            else{
+                alert("취소하지 않습니다.")
+            }
+        }
+        
+
+
+
+
+        /* 숫자를 입력받아 홀 짝 인지 출력
+        var num = Number(prompt("숫자를 입력하세요."));
+        if(num % 2 == 0) {document.write('입력숫자 : ',num,'<br>',"짝수 입니다.");}
+        else{document.write('입력숫자: ',num,'<br>',"홀수 입니다.")}*/
+    </script>
+</head>
+<body>
+    <h2>글쓰기</h2>
+    <input type="text">
+    <br>
+    <button onclick="writeBtn()">취소</button>
+
+</body>
+</html>

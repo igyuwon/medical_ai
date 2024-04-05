@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비교연산자</title>
+    <script>
+        var a = 10;
+        var b = 30;
+        var c = 10;
+        var f = "30"; 
+        var result;
+        var result2;
+
+        document.write(100+200+"200","<br>");
+
+        result = a>b;
+        document.write("result ",result+"<br>");
+        result2 = a<c;
+        document.write("result2",result2+"<br>");
+        var result3 = a != b // 10 !=30 true
+        document.write("result3",result3+"<br>");
+        
+        document.write("------------------------<br>");
+        if(b==f){ // 들어가 있는 값만 비교
+            document.write("같습니다.<br>");
+        }else{
+            document.write("다릅니다.<br>");
+        }
+        
+        document.write("------------------------<br>");
+
+        if(b===f){ // 들어가 있는 값과 타입까지 비교
+            document.write("같습니다.<br>");
+        }else{
+            document.write("다릅니다.<br>");
+        }
+        
+        if (a>b){
+            document.write(a,"<br>")
+        }else{
+            document.write(b,"<br>")
+        }
+        if (b > c){
+            document.write(b,"<br>")
+        }else{
+            document.write(c,"<br>")
+        }
+
+        // document.write("a+b : "+(a>b)+"<br>");
+        // document.write("a-b : "+(a<b)+"<br>");
+
+        // result = a>b;
+        // document.write("a>b결과 : " + result+"<br>");
+        // result2 = a<b;
+        // document.write("a<b 결과 : "+result2);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
