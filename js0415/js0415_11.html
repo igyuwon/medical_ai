@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            $("#sbtn").click(function(){
+                $.ajax({
+                    url:"http://127.0.0.1:5500/js0415/json/stu_score.json",
+                    type:"get",
+                    data:{},
+                    dataType:"json",
+                    success:function(data){
+                        alert("성공");
+                        console.log(data);
+                        $("#content").text()
+                    },
+                    error:function(){
+                        alert("실패")
+                    }
+                }); // ajax
+            });
+
+        }); // 제이쿼리
+    </script>
+    <style>
+        *{margin:0; padding:0;}
+        #content{width:800px; height:700px; border:1px solid black;}
+    </style>
+</head>
+<body>
+    <h2>학생성적 프로그램</h2>
+    <button id="sbtn">확인</button>
+    <br>
+    <button id="content"></button>
+</body>
+</html>
