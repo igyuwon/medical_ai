@@ -55,12 +55,14 @@ total_population = int(seoul_population)+int(incheon_population)+int(ggd_populat
 print("총 인구수 : ",total_population)
 print("-"*50)
 print("selenium 응용해봄")
-s_name = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[2]/td[2]')
-s_num = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[2]/td[3]')
-i_name = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[5]/td[2]')
-i_num = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[5]/td[3]')
-k_name = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[10]/td[2]')
-k_num = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[10]/td[3]')
-print(s_name.text , ':', s_num.text.replace(',',''))
-print(i_name.text , ':', i_num.text.replace(',',''))
-print(k_name.text , ':', k_num.text.replace(',',''))
+s_name = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[2]/td[2]').text
+seoul_population = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[2]/td[3]').text.replace(',','')
+i_name = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[5]/td[2]').text
+incheon_population = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[5]/td[3]').text.replace(',','')
+g_name = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[10]/td[2]').text
+ggd_population = browser.find_element(By.XPATH,'//*[@id="contextTable"]/tbody/tr[10]/td[3]').text.replace(',','')
+print(s_name,':',seoul_population)
+print(i_name,':',incheon_population)
+print(g_name,':',ggd_population)
+total_population = int(seoul_population)+int(incheon_population)+int(ggd_population)
+print(total_population)
