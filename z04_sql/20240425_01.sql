@@ -261,11 +261,27 @@ select * from member;
 
 desc member;
 
--- DDL column 추가, 삭제
+-- DDL column 추가, 삭제, 수정
 -- commit, rollback이 안됨. 바로 저장
 alter table member add gender varchar2(6) default 'female' not null;
+update member set gender='male';
 
+-- 컬럼삭제 - commit, rollback이 안됨. 바로 저장
+-- alter table member drop column phone;
+
+-- 컬럼수정 - 컬럼이름 변경, 타입변경
+alter table member rename column name to stu_name;
 select * from member;
 
-update member set gender='male';
+-- 타입변경
+alter table member modify(stu_name varchar2(50));
+
+-- 데이터에 문자 들어있으면 number로 타입 변경 불가능,
+-- 기존 들어있는 데이터보다 공간이 작으면 변경 불가능
+update member set stu_name='홍';
+alter table member modify(stu_name varchar2(6));
+
+-- 컬럼의 타입을 변경하려면 컬럼데이터가 빈공백이거나 null일 때 가능
+-- alter table member modify(stu_name number(4));
+
 commit;
