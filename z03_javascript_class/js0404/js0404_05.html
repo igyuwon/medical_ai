@@ -11,12 +11,11 @@
         var str3 = "오세요";
 
         var result;
-
-        // write, console
-        result = str1+str2+num1+str3;
-        document.write("결과값 : ",result+"<br>");
-        console.log("결과값 : ",result);
-        document.write("------------------------<br>");
+        //result = str1 + str2+num1+str3;
+        document.write(str1+str2+num1+str3,"<br>");
+        console.log(result);
+        //write,console
+        document.write("-------------------------<br>");
 
         var n1 = 100;
         var n2 = 200;
@@ -24,12 +23,13 @@
         var n3 = 10.5;
 
         var result2;
-
-        // 4개 변수를 모두 더한 결과 값을 정수형만 출력
+        // 4개의 변수를 모두 더한 결과값의 정수형만 출력
         result2 = n1+n2+Number(s1)+n3;
-        result2 = parseInt(result2);
+        result2 = parseInt(result2); //정수형 숫자변환
         document.write(result2,"<br>");
-        console.log(result2);
+
+
+
 
     </script>
 </head>

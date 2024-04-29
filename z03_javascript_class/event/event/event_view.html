@@ -20,41 +20,33 @@
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
 <script>
 	$(function(){
-		let c_count = 0; // 댓글 번호
-		let id = 'aaa'; // 로그인 된 회원 아이디
-		let update_id = ""; // 댓글 id번호
-		let old_iddate = ""; // 댓글 아이디, 날짜
-		let old_ccont = ""; // 댓글이전글 내용
+		let c_count = 0;    //댓글 번호
+		let id = 'aaa';     //로그인 된 회원아이디
+		let update_id = "";  //댓글 id번호
+		let old_iddate = ""; //댓글 아이디,날짜
+		let old_ccont = ""; //댓글이전글 내용
 
-		// 댓글 삭제함수
+		//댓글 삭제함수
 		$(document).on("click",".delbtn",function(){
-			event.preventDefault(); // a태그 기능 삭제
-			// alert("댓글 삭제버튼");
+			event.preventDefault(); //a태그 기능 삭제
+			console.log("id : "+$(this).parent().parent().attr("id"));
+
 			let del_id = $(this).parent().parent().attr("id");
 			if(confirm("댓글을 삭제하시겠습니까?")){
 				$("#"+del_id).remove();
 			}
+
 		});
 
-
-		//수정 폼
-		// <ul>
-		// 	<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
-		// 	<li class="txt"><textarea class="replyType"></textarea></li>
-		// 	<li class="btn">
-		// 		<a href="#" class="rebtn">완료</a>
-		// 		<a href="#" class="rebtn">취소</a>
-		// 	</li>
-			// </ul>
-		// 수정버튼 클릭 시
+		
+		// 수정버튼 클릭시
 		$(document).on("click",".updatebtn",function(){
 			event.preventDefault();
 			alert("댓글수정창으로 이동합니다.");
-			// console.log("수정버튼 id : "+$(this).parent().parent().attr("id"));
+			console.log("수정버튼 id : "+$(this).parent().parent().attr("id"));
 			update_id = $(this).parent().parent().attr("id");
-			old_iddate = $("#"+update_id+" .name").html()
+			old_iddate = $("#"+update_id+" .name").html();
 			old_ccont = $("#"+update_id+" .txt").text();
-
 			console.log("날짜 : "+$("#"+update_id+" .name").html());
 			console.log("내용 : "+$("#"+update_id+" .txt").text());
 
@@ -65,18 +57,19 @@
 			h_data += '<a href="#" class="rebtn writebtn">완료</a> ';
 			h_data += '<a href="#" class="rebtn cancelbtn">취소</a>';
 			h_data += '</li>';
-
 			$("#"+update_id).html(h_data);
 		});
 
-		// 취소 버튼 클릭 시
-		$(document).on("click", ".cancelbtn",function(){
+		//취소 버튼 클릭시
+		$(document).on("click",".cancelbtn",function(){
 			event.preventDefault();
 			alert("수정을 취소합니다.");
-			console.log('id : '+update_id);
-			console.log('old_idate : '+old_iddate);
-			console.log('old_ccont : '+old_ccont);
+			console.log("id : "+update_id);
+			console.log("old_iddate : "+old_iddate);
+			console.log("old_ccont : "+old_ccont);
+			console.log("내용 : "+$("#"+update_id+" .txt").text());
 
+			//기존형태로 변경
 			let h_data = "";
 			h_data += '<li class="name">'+old_iddate+'</li>';
 			h_data += '<li class="txt">'+old_ccont+'</li>';
@@ -88,14 +81,15 @@
 			$("#"+update_id).html(h_data);
 		});
 
-		// 완료 버튼 클릭 시
-		$(document).on("click", ".writebtn",function(){
+		//완료버튼 클릭시
+		$(document).on("click",".writebtn",function(){
 			event.preventDefault();
 			alert("댓글을 수정합니다.");
-			console.log('id : '+update_id);
-			console.log('old_idate : '+old_iddate);
+			console.log("id : "+update_id);
+			console.log("old_iddate : "+old_iddate);
 			console.log("내용 : "+$("#"+update_id+" .replyType").val());
 
+			//기존형태로 변경
 			let h_data = "";
 			h_data += '<li class="name">'+old_iddate+'</li>';
 			h_data += '<li class="txt">'+$("#"+update_id+" .replyType").val()+'</li>';
@@ -108,6 +102,7 @@
 		});
 
 
+
 		//댓글 1개 추가 함수
 		$(".replyBtn").click(function(){
 			event.preventDefault(); //a태그 기능 삭제함수
@@ -115,11 +110,11 @@
 			console.log("내용 : "+$(".replyType").val());
 
 			c_count += 1; //1씩 증가
-
+			
 			//날짜함수
 			var today = new Date();
 			let t_day = today.getFullYear()+"-"+(String(today.getMonth()+1)).padStart(2,'0')+"-"+(String(today.getDate())).padStart(2,'0'); //2024
-			// t_day.split('-').map(str => str.padStart(2,'0')).join('-')
+			//t_day.split('-').map(str => str.padStart(2,'0')).join('-');
 			console.log(t_day);
 
 			//비밀번호
@@ -156,8 +151,8 @@
 			type:"get",
 			dataType:"json",
 			success:function(data){
-				// alert("데이터 가져오기 성공");
-				console.log(data);
+				//alert("데이터 가져오기 성공");
+				//console.log(data);
 
 				c_count = data.length; //100
 
@@ -165,16 +160,15 @@
 				for(let i=0;i<10;i++){
 					h_data += '<ul id="'+data[i].cno+'">';
 					h_data += '<li class="name">'+data[i].id+' <span>['+data[i].cdate+'&nbsp;&nbsp;00:00:00]</span></li>';
-					
-					if(data[i].id == "aaa"){ // 나의 글
+					if(data[i].id == "aaa"){
 						h_data += '<li class="txt">'+data[i].ccont+'</li>';
-                    	h_data += '<li class="btn">';
+						h_data += '<li class="btn">';
 						h_data += '<a href="#" class="rebtn updatebtn">수정</a> ';
-						h_data += '<a class="rebtn delbtn">삭제</a>';
+						h_data += '<a href="#" class="delbtn rebtn">삭제</a>';
 					}else{
-						if(data[i].cpw == ""){ // 나의 글이 아니면 (패스워드 없는거)
+						if(data[i].cpw == ""){
 							h_data += '<li class="txt">'+data[i].ccont+'</li>';
-						}else{ // 나의 글이 아니면 (패스워드 있는거)
+						}else{
 							h_data += '<li class="txt"><span class="orange">※ 비밀글입니다.</span></li>';
 						}
 						h_data += '<li class="btn">';
@@ -182,7 +176,7 @@
 					h_data += '</li>';
 					h_data += '</ul>';
 				}
-				// console.log(h_data);
+				//console.log(h_data);
 				$(".replyBox").html(h_data);
 			},
 			error:function(){alert("에러");	}

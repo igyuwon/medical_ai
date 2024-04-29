@@ -5,26 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>Document</title>
+    <style>
+        *{margin:0; padding:0;}
+        h2,form{text-align: center;}
+        .main{width:800px; height:300px; margin:50px auto; border:3px solid black;
+        font-size: 20px; text-align: center;}
+    </style>
     <script>
         $(function(){
-            // 버튼 별 색이 달라지게
+            //원하는 색상을 클릭하면 색상이 나타나게 하시오.
             $("input[name='bcolor']").click(function(){
-                // 선택된 것
+                //console.log($("input[name='bcolor']"));
                 $("input[name='bcolor']").each(function(){
-                    if($(this).is(":checked")){
+                    //console.log($(this));
+                    if($(this).is(":checked")){ //체크가 되었는지 확인
+                        console.log($(this).val()); //val()
                         $(".main").css("background",$(this).val());
                     }
                 });
+
             });
-        }); // 제이쿼리
+
+        });//jquery
     </script>
-    <style>
-        *{margin:0; padding:0;}
-        .main{width:800px; height:300px; margin:50px auto; border:3px solid black;
-        font-size:20px; text-align:center;}
-        form{text-align: center;}
-        h2{text-align: center;}
-    </style>
 </head>
 <body>
     <h2>원하는 색상을 클릭하시오.</h2>

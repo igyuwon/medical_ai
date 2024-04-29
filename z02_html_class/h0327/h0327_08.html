@@ -1,47 +1,53 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입 양식 폼</title>
+    <title>Document</title>
     <style>
-        span{color:red;}
+        *{margin:0; padding:0;}
+        input{width:320px;}
+        
+        button{width:150px; height:45px;}
+        table{width:400px; margin:0 auto;}
+        #btn{text-align: center; padding-top:20px;}
     </style>
+
+
 </head>
 <body>
     <form action="#" name="frm" method="get">
-        <label>아이디<span>*</span></label><br>
-        <input type="text" name="id" id="id" required><br>
-        <label>비밀번호<span>*</span></label><br>
-        <input type="password" name="pw" id="pw" required><br>
-        <label>비밀번호 확인<span>*</span></label><br>
-        <input type="password" name="pw2" id="pw2" required><br>
-        <label>이름<span>*</span></label><br>
-        <input type="text" name="name" id="name" required><br>
-        <label>이메일<span>*</span></label><br>
-        <input type="text" name="pw2" id="pw2" required ><br>
-        <label>연락처<span>*</span></label><br>
-        <input type="text" name="pw2" id="pw2" required><br>
-        <label>성별<span>*</span></label><br>
-        <input type="radio" name="male" id="male" required>
-        <label for="male">남자</label>
-        <input type="radio" name="female" id="female" required>
-        <label for="female">여자</label><br>
-        <label>수강과목<span>*</span></label><br>
-        <input type="checkbox" name="html" id="html" required>
-        <label for="html">HTML</label>
-        <input type="checkbox" name="css" id="css" required>
-        <label for="css">CSS</label>
-        <input type="checkbox" name="javascript" id="javascript" required>
-        <label for="javascript">JAVASCRIPT</label>
-        <input type="checkbox" name="jQuery" id="jQuery" required>
-        <label for="jQuery">jQuery</label>
-        <input type="checkbox" name="php" id="php" required>
-        <label for="php">PHP</label><br>
 
-        <input type="submit" value="가입하기">
-        <input type="reset" value="다시 작성">
-        
+        <table>
+            <colgroup>
+                <col width="80px">
+                <col width="320px">
+            </colgroup>
+            <tr>
+                <td><label>아이디</label></td>
+                <td><input type="text" name="id"></td>
+            </tr>
+            <tr>
+                <td><label>아이디</label></td>
+                <td><input type="text" name="id"></td>
+            </tr>
+            <tr>
+                <td><label>아이디</label></td>
+                <td><input type="text" name="id"></td>
+            </tr>
+            <tr>
+                <td><label>아이디</label></td>
+                <td><input type="text" name="id"></td>
+            </tr>
+            <tr>
+                <td colspan="2" id="btn">
+                    <button type="submit">전송</button>
+                    <button>취소</button>
+                </td>
+            </tr>
+            
+        </table>
     </form>
+    
 </body>
 </html>

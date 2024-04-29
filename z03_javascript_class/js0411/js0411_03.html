@@ -9,37 +9,28 @@
     </style>
     <script>
         $(function(){
-            // 1. 선택자 지정
-            // 버튼이 클릭이 되면 input의 색상을 yellow 변경
+           //1. 선택자 지정
+           $("#nbtn1").click( function(){
+              //alert("test");
+              /*
+              $(".n1").css('background','yellow'); //1개 css사용
+              $(".n1").css('color','blue');
+              $(".n1").css('font-weight','700');
+              */
+              // 여러개 ({ });
+              $(".n1").css({'background':'yellow','color':'blue','font-weight':'700'});
+            });
+            
+            $("#nbtn2").click( function(){
+               $(".n2").css({'background':'yellow','color':'blue','font-weight':'700'});
+            }); 
+            $("#nbtn3").click( function(){
+               $(".n3").css({'background':'yellow','color':'blue','font-weight':'700'});
+            }); 
 
-            $('#nbtn1').click(function(){
-                /*
-                $(".n1").css('background','yellow');
-                $(".n1").css('color','green');
-                $(".n1").css('font-weight','700');
-                */
-                // 여러개
-                $(".n1").css({'background':'yellow','color':'blue','font-weight':'700'});
-            });
-            $('#nbtn2').click(function(){
-                $(".n2").css({'background':'yellow','color':'blue','font-weight':'700'});
-            });
-            $('#nbtn3').click(function(){
-                $(".n3").css({'background':'yellow','color':'blue','font-weight':'700'});
-            });
-
-            // blue, green
-            /*
-            $('#nbtn2').click(function(){
-                $(".n2").css('background','blue');
-            });
-            $('#nbtn3').click(function(){
-                $(".n3").css('background','green');
-            });
-            */
+           //blue, green
 
         });
-
     </script>
 </head>
 <body>
