@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>형제 선택자</title>
     <style>
-        section p{color:red;}
-        section>div>h2{color:blue;}
-        .site>h2{text-decoration:underline;}
+        section p { color:red; }
+        section>div>h2{color:blue; }
+        .site h2{text-decoration: underline;}
         /* 인접 형제 선택자 */
-        .site>h2+p{color:orange;}
-        /* 모든 형제 선택자 */
-        /* .site>h2~p{color:orange;} */
+        .site>h2+p{color:orange; }
+        /*모든 형제 선택자 
+        .site>h2~p{color:orange; }
+        */
     </style>
 </head>
 <body>
@@ -32,6 +33,5 @@
             <h3>지마켓 사이트</h3>
         </div>
     </section>
-    
 </body>
 </html>

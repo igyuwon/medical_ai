@@ -1,13 +1,13 @@
-alter session set "_ORACLE_SCRIPT"=true;
+alter session set "_ORACLE_SCRIPT"=true;  
 
--- ì‚¬ìš©ì ìƒì„± "" ì—†ì–´ì•¼í•¨
+-- »ç¿ëÀÚ »ı¼º "" ¾ø¾Ö¾ß ÇÔ.
 create user ora_user identified by 1111;
 
--- ê¶Œí•œ ë¶€ì—¬
+-- ±ÇÇÑ ºÎ¿©
 grant connect, resource, dba to ora_user;
 
--- ê³„ì • ì‚­ì œ
+-- °èÁ¤ »èÁ¦
 drop user ora_user;
 
--- ê¶Œí•œ ì‚­ì œ
+-- ±ÇÇÑ »èÁ¦
 revoke connect, resource, dba from ora_user;

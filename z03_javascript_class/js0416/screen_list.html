@@ -3,49 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>일별 박스오피스</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/notice_list.css">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <title>일별 박스오피스</title>
   <script>
     $(function(){
+      //버튼을 클릭시
       $("#mbtn").click(function(){
-        //alert('t');
+        //alert("test");
         let s_word = $("#s_word").val();
+        console.log("날짜 : "+s_word);
         $.ajax({
-          url:"https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=6155939281e4d988791bf62c36e7358f&targetDt="+s_word,
+          url:"https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=b4cefdc91025f56609b0e03df7a460a0&targetDt="+s_word,
+          data:"",
           type:"get",
-          data:{},
           dataType:"json",
           success:function(data){
-            alert('데이터 가져오기 성공');
-            console.log(data.boxOfficeResult.dailyBoxOfficeList);
+            alert("데이터 가져오기 성공");
+            console.log(data);
+            let s_data = data.boxOfficeResult.dailyBoxOfficeList;
 
-            let movie_data = data.boxOfficeResult.dailyBoxOfficeList;
-
-            let htmlData ="";
-            for(let i=0;i<movie_data.length;i++){
+            let htmlData = "";
+            for (let i=0;i<s_data.length;i++){
               htmlData += "<tr>";
-              htmlData += "<td>"+movie_data[i].rank+"</td>";
-              htmlData += "<td>"+movie_data[i].rankInten+"</td>";
-              htmlData += "<td>"+movie_data[i].movieCd+"</td>";
-              htmlData += "<td>"+movie_data[i].movieNm+"</td>";
-              htmlData += "<td>"+movie_data[i].salesAmt+"</td>";
-              htmlData += "<td>"+movie_data[i].salesAcc+"</td>";
-              htmlData += "<td>"+movie_data[i].audiAcc+"</td>";
+              htmlData += "<td>"+s_data[i].rank +"</td>";
+              htmlData += "<td>"+s_data[i].rankInten +"</td>";
+              htmlData += "<td>"+s_data[i].movieCd +"</td>";
+              htmlData += "<td>"+s_data[i].movieNm +"</td>";
+              htmlData += "<td>"+s_data[i].salesAmt +"</td>";
+              htmlData += "<td>"+s_data[i].salesAcc +"</td>";
+              htmlData += "<td>"+s_data[i].audiAcc +"</td>";
               htmlData += "</tr>";
             }
-            $("tbody").html(htmlData)
+
+            //tbody html소스 넣기
+            $("tbody").html(htmlData);
+
           },
-          error:function(){
-            alert('실패');
-          }
-        }); //ajax
-      });//click
-    });//jq
+          error:function(){ alert("에러"); }
+
+        });//ajax
+      });//mbtn
+    });//jquery
   </script>
+  <style>
+    #mbtn{cursor: pointer;}
+  </style>
 </head>
 <body>
   <header>
@@ -83,7 +89,7 @@
   </nav>
 
   <section>
-    <h1>NOTICE</h1>
+    <h1>일별 박스오피스</h1>
     <div class="wrapper">
       <form action="/search" name="search" method="post">
         <select name="category" id="category">
@@ -102,10 +108,10 @@
 
     <table>
       <colgroup>
+        <col width="5%">
+        <col width="5%">
         <col width="10%">
-        <col width="10%">
-        <col width="10%">
-        <col width="10%">
+        <col width="20%">
         <col width="20%">
         <col width="20%">
         <col width="20%">
@@ -113,10 +119,10 @@
       <thead>
         <tr>
           <th>순위</th>
-          <th>전일대비증감분</th>
-          <th>영화대표코드</th>
+          <th>전일대비</th>
+          <th>대표코드</th>
           <th>영화명</th>
-          <th>일일매출액</th>
+          <th>해당일 매출액</th>
           <th>누적매출액</th>
           <th>누적관객수</th>
         </tr>
@@ -124,14 +130,16 @@
       <tbody>
         <tr>
           <td>1</td>
-          <td>0</td>
-          <td>12345678</td>
-          <td>쿵푸팬더4</td>
-          <td>1234578</td>
-          <td>1456745458</td>
-          <td>1234455</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          
         </tr>
-      </tbody>        
+      </tbody>
+
     </table>
 
     <ul class="page-num">

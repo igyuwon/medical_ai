@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>table태그</title>
         <style>
-            table,th,td {border:1px solid black;}
+            table{border-collapse: collapse;}
+            table,th,td{border:1px solid black;}
+            th,td{height:40px; }
+            thead{background:#c2c2c2;}
+            tfoot{background:#c2c2c2; text-align: center; font-weight: 700;}
         </style>
     </head>
     <body>
+        <h2>요안도라 객실</h2>
         <table>
-            <caption>요안도라 객실</caption>
             <colgroup>
-                <col width="150px">
-                <col width="150px">
-                <col width="150px">
-                <col width="150px">
+                <col width="200px">
+                <col width="200px">
+                <col width="200px">
+                <col width="200px">
             </colgroup>
             <thead>
-                <tr bgcolor = "lightgray">
-                    <th>방 이름</th>
+                <tr>
+                    <th>방이름</th>
                     <th>대상</th>
                     <th>크기</th>
                     <th>가격</th>
@@ -28,14 +32,13 @@
                     <th>유채방</th>
                     <td>여성 도미토리</td>
                     <td rowspan="3">4인실</td>
-                    <td rowspan="4">1인 20000원</td>
+                    <td rowspan="4">1인 20,000원</td>
                 </tr>
                 <tr>
                     <th rowspan="2">동백방</th>
                     <td>동성 도미토리</td>
                 </tr>
                 <tr>
-
                     <td>가족 1팀</td>
                 </tr>
                 <tr>
@@ -45,10 +48,10 @@
                 </tr>
             </tbody>
             <tfoot>
-                <tr bgcolor = "lightgray">
-                    <th colspan="4">바깥채 전체를 렌트합니다</th>
+                <tr>
+                    <td colspan="4">바깥채 전체를 렌트합니다</td>
                 </tr>
             </tfoot>
         </table>
-    </body>
+    </body>        
 </html>

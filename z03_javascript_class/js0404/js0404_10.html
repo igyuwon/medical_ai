@@ -7,22 +7,24 @@
 </head>
 <body>
     <script>
-        /* 입력형태 */
-        // form input타입
-        // var name = prompt("당신의 이름은?", "이름 공백없이...");
-        
-        // 이름, 국어, 영어를 입력 받아 출력하시오.
-        var name = prompt("당신의 이름은?", "");
-        var kor = Number(prompt("당신의 국어점수는?", ""));
-        var eng = Number(prompt("당신의 영어점수는?", ""));
+        /* 입력형태- input, prompt */
+        //form input타입
+        var name  = prompt("당신의 이름은?","이름 공백없이...");
+        var kor = Number(prompt("국어점수를 입력하세요."));
+        var eng = Number(prompt("영어점수를 입력하세요."));
+        var math = Number(prompt("수학점수를 입력하세요."));
 
-        document.write("이름 : ",name,"<br>","국어점수 : ",kor,"<br>","영어점수 :" ,eng,"<br>", "합계 : ",(kor+eng),"<br>")
-        
+        document.write("이름 : ",name,"<br>");
+        document.write("국어 : ",kor,"<br>");
+        document.write("영어 : ",eng,"<br>");
+        document.write("수학 : ",math,"<br>");
+        document.write("합계 : ",(kor+eng+math),"<br>");
+
 
         /* 출력형태 */
-        // alert("출력1 알럿");
-        // console.log("출력2 콘솔")
-        // document.write("출력3 document.write()");
+        //alert("출력1 알럿");
+        //console.log("출력2 콘솔");
+        //document.wrtie("출력3 document.write()")
     </script>
     
 </body>

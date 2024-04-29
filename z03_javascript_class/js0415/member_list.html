@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>관광사진정보리스트</title>
+  <title>회원정보리스트</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
@@ -12,40 +12,40 @@
   <script>
     $(function(){
       $("#mbtn").click(function(){
-
-        let item_num = $("#item_num").val();
         //alert("test");
         $.ajax({
-          url:"https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1?serviceKey=918RE13GA7OY7ZEmUzApgbOeAcQoZ%2FaHsXWcqPAKQ9YNNPj83KOstRMRIUrCFIAcm9qj2R6b7NFZjp%2FYsYzJLg%3D%3D&numOfRows="+item_num+"&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&_type=json",
+          url:"http://127.0.0.1:5500/js0415/json/stu_score.json",
           type:"get",
           data:{},
           dataType:"json",
           success:function(data){
             alert("데이터 가져오기 성공");
-            console.log(data.response.body.items);
-            console.log(data.response.body.items.item[0]);
-            let item_data = data.response.body.items.item;
+            console.log(data);
+
             let htmlData = "";
-            for(let i=0;i<item_data.length;i++){
+            for(let i=0;i<data.length;i++){
               htmlData += "<tr>";
-              htmlData += "<td>"+item_data[i].galContentTypeId+"</td>";
-              htmlData += "<td>"+item_data[i].galTitle+"</td>";
-              htmlData += "<td>"+item_data[i].galPhotographyMonth+"</td>";
-              htmlData += "<td>"+item_data[i].galPhotographyLocation+"</td>";
-              htmlData += "<td>"+item_data[i].galWebImageUrl+"</td>";
-              htmlData += "<td>";
-              htmlData += "<img src='"+item_data[i].galWebImageUrl +"' style='width:40px;'>";
-              htmlData += "</td>";
+              htmlData += "<td>"+data[i].no+"</td>";
+              htmlData += "<td>"+data[i].name+"</td>";
+              htmlData += "<td>"+data[i].kor+"</td>";
+              htmlData += "<td>"+data[i].eng+"</td>";
+              htmlData += "<td>"+data[i].math+"</td>";
+              htmlData += "<td>"+data[i].total+"</td>";
+              htmlData += "<td>"+data[i].avg+"</td>";
+              htmlData += "<td>"+data[i].rank+"</td>";
               htmlData += "</tr>";
-              
-              }
-              $("tbody").html(htmlData); //100개 회원정보 추가
+
+            }
+            $("tbody").html(htmlData); //100개 회원정보 추가
+
+
           },
           error:function(){
             alert("ajax실패");
           }
         })
       });
+
     });
   </script>
   <style>
@@ -62,16 +62,20 @@
       <li>기프트카드 등록</li>
     </ul>
   </header>
+
   <nav>
     <div class="logo"></div>
+
     <div id="search">
       <div class="search"></div><br>
       <span>메뉴찾기</span>
     </div>
+
     <div id="cart">
       <div class="cart"></div><br>
       <span>장바구니</span>
     </div>
+
     <div class="nav-menu">
       <ul>
         <li>COOKIT소개</li>
@@ -79,9 +83,10 @@
         <li>리뷰</li>
         <li>이벤트</li>
         <li>MY쿡킷</li>
-      </ul>
+      </ul>  
     </div>
   </nav>
+
   <section>
     <h1>회원정보리스트</h1>
     <div class="wrapper">
@@ -91,42 +96,52 @@
           <option value="title">제목</option>
           <option value="content">내용</option>
         </select>
+
         <div class="title">
-          <input type="text" size="16" id="item_num">
+          <input type="text" size="16">
         </div>
+  
         <button type="button" id="mbtn"><i class="fas fa-search"></i></button>
       </form>
     </div>
+
     <table>
       <colgroup>
         <col width="10%">
-        <col width="20%">
+        <col width="15%">
         <col width="10%">
-        <col width="20%">
-        <col width="30%">
         <col width="10%">
+        <col width="10%">
+        <col width="15%">
+        <col width="15%">
+        <col width="15%">
       </colgroup>
       <thead>
         <tr>
           <th>No.</th>
-          <th>제목</th>
-          <th>촬영일자</th>
-          <th>촬영장소</th>
-          <th>이미지위치</th>
-          <th>썸네일</th>
+          <th>이름</th>
+          <th>국어</th>
+          <th>영어</th>
+          <th>수학</th>
+          <th>합계</th>
+          <th>평균</th>
+          <th>등수</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>1</td>
-          <td>치악산국립공원</td>
-          <td>202402</td>
-          <td>강원특별자치도 원주시 소초면</td>
-          <td>http://tong.visitkorea.or.kr/cms2/website/74/3108474.jpg</td>
-          <td><img src="http://tong.visitkorea.or.kr/cms2/website/74/3108474.jpg" style="width:40px;"></td>
+          <td>홍길동</td>
+          <td>100</td>
+          <td>100</td>
+          <td>100</td>
+          <td>300</td>
+          <td>100.0</td>
+          <td>1</td>
         </tr>
       </tbody>
     </table>
+
     <ul class="page-num">
       <li class="first"></li>
       <li class="prev"></li>
@@ -136,14 +151,17 @@
       <li class="next"></li>
       <li class="last"></li>
     </ul>
+
     <div class="write">쓰기</div>
   </section>
+
   <footer>
     <div class="wrapper">
       <div class="footer-left">
         <div class="footer-logo"></div>
         <div class="copyright">© COOKIT ALL RIGHTS RESERVED</div>
       </div>
+  
       <div class="footer-center">
         <ul class="footer-nav">
           <li class="first-list">이용약관</li>
@@ -151,6 +169,7 @@
           <li>법적고지</li>
           <li>사업자정보 확인</li>
         </ul>
+  
         <ul class="footer-info">
           <li class="first-list">씨제이제일제당(주)</li>
           <li>대표이사 : 손경식,강신호,신현재</li>
@@ -161,18 +180,21 @@
           <li>이메일 : cjon@cj.net</li>
           <li>호스팅제공자 : CJ올리브네트웍스㈜</li>
         </ul>
+  
         <div id="check">고객님은 안전거래를 위해 현금등으로 결제시 LG U+ 전자 결제의 매매보호(에스크로) 서비스를 이용하실 수 있습니다. <span class="check">가입 사실 확인</span></div>
       </div>
+  
       <div class="footer-right">
         <div id="shortcut">
           <span>CJ그룹계열사 바로가기</span>
           <div class="shortcut"></div>
         </div>
+  
         <div class="call">고객행복센터 1668-1920</div>
         <div class="inquery">1:1 문의</div>
       </div>
+  
     </div>
   </footer>
 </body>
 </html>
-

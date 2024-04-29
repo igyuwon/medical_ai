@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원정보리스트</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/notice_list.css">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <title>회원정보리스트</title>
   <script>
     $(function(){
+      //버튼을 클릭시
       $("#mbtn").click(function(){
-        // alert('t');
+        //alert("test");
         $.ajax({
           url:"http://127.0.0.1:5500/js0416/json/member.json",
-          type:"get",
           data:"",
+          type:"get",
           dataType:"json",
           success:function(data){
-            alert('데이터 불러오기 성공');
             console.log(data);
 
             let htmlData = "";
-            for(let i=0;i<data.length;i++){
+            for (let i=0;i<data.length;i++){
               htmlData += "<tr>";
               htmlData += "<td>"+data[i].no+"</td>";
               htmlData += "<td>"+data[i].id+"</td>";
@@ -33,16 +33,16 @@
               htmlData += "<td>"+data[i].email+"</td>";
               htmlData += "</tr>";
             }
-             $("tbody").html(htmlData);
+
+            //tbody html소스 넣기
+            $("tbody").html(htmlData);
 
           },
-          error:function(){
-            alert('실패');
-          }
-        }); // ajax
-      }); // click
-        
-    }); // jq
+          error:function(){ alert("에러"); }
+
+        });//ajax
+      });//mbtn
+    });//jquery
   </script>
   <style>
     #mbtn{cursor: pointer;}
@@ -126,10 +126,11 @@
           <td>aaa</td>
           <td>1111</td>
           <td>Male</td>
-          <td>010-111-1111</td>
+          <td>010-1111-1111</td>
           <td>aaa@naver.com</td>
         </tr>
-      </tbody>      
+      </tbody>
+
     </table>
 
     <ul class="page-num">
