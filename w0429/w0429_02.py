@@ -1,16 +1,29 @@
 import requests
+<<<<<<< HEAD
 import time
 import random
+=======
+import random
+import time
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+<<<<<<< HEAD
 # 화면이 나타나는 것을 확인
+=======
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pyautogui
 
+<<<<<<< HEAD
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36","Accep-Language":"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"}
+=======
+headers = {"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+           "Accept-Language":"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"}
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 
 url = "https://flight.naver.com/"
 
@@ -18,8 +31,12 @@ browser = webdriver.Chrome()
 browser.maximize_window()
 browser.get(url)
 
+<<<<<<< HEAD
 time.sleep(1)
 # 출발지 선택 // 전체문서 
+=======
+# 출발지 선택 // 전체문서
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 elem = browser.find_element(By.XPATH,'//b[text()="ICN"]')
 time.sleep(1)
 elem.click()
@@ -35,12 +52,20 @@ elem = browser.find_element(By.XPATH,'//i[contains(text(),"김포국제공항")]
 elem.click()
 time.sleep(2)
 
+<<<<<<< HEAD
 
 # 도착지 선택 // 전체문서 
 elem = browser.find_element(By.XPATH,'//b[text()="도착"]')
 time.sleep(1)
 elem.click()
 time.sleep(1)
+=======
+# 도착지 선택 // 전체문서
+elem = browser.find_element(By.XPATH,'//b[text()="도착"]')
+time.sleep(2)
+elem.click()
+time.sleep(2)
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 
 # 국내부분 선택
 elem = browser.find_element(By.XPATH,'//button[text()="국내"]')
@@ -54,40 +79,74 @@ time.sleep(2)
 
 # 가는날 부분 선택
 browser.find_element(By.XPATH,'//button[text()="가는 날"]').click()
+<<<<<<< HEAD
 time.sleep(1)
+=======
+time.sleep(2)
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 
 # 가는날짜 선택
 elem = browser.find_elements(By.XPATH,'//b[text()="14"]')
 print("14일 개수 :",len(elem))
+<<<<<<< HEAD
 time.sleep(1)
+=======
+time.sleep(3)
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 elem[1].click()
 
 # 오는날 부분 선택
 elem = browser.find_element(By.XPATH,'//button[text()="오는 날"]')
 elem.click()
+<<<<<<< HEAD
 time.sleep(1)
 
 # 가는날짜 선택
 elem = browser.find_elements(By.XPATH,'//b[text()="15"]')
 print("54일 개수 :",len(elem))
 time.sleep(1)
+=======
+time.sleep(2)
+
+# 오는날짜 선택
+elem = browser.find_elements(By.XPATH,'//b[text()="15"]')
+print("54일 개수 :",len(elem))
+time.sleep(2)
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 elem[1].click()
 
 # 인원수 선택
 browser.find_element(By.XPATH,'//button[contains(text(),"성인")]').click()
+<<<<<<< HEAD
 time.sleep(1)
 
 # 1명추가 선택
 browser.find_element(By.XPATH,'//button[@class="searchBox_outer__9n6IB"]').click()
+=======
+time.sleep(2)
+
+# 1명추가 선택
+browser.find_element(By.XPATH,'//button[@class="searchBox_outer__9n6IB"]').click()
+time.sleep(2)
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 
 # 항공권 검색 선택
 # 인원선택창 닫기
 browser.find_element(By.XPATH,'//span[contains(text(),"항공권 검색")]').click()
+<<<<<<< HEAD
 # 항공권 검색 클릭
 browser.find_element(By.XPATH,'//span[contains(text(),"항공권 검색")]').click()
 
 
 # 화면 대기 시간 함수
+=======
+time.sleep(2)
+
+# 항공권 검색 클릭
+browser.find_element(By.XPATH,'//span[contains(text(),"항공권 검색")]').click()
+
+# 화면 대기시간 함수
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 # time.sleep(7)
 elem = WebDriverWait(browser,30).until(EC.presence_of_all_elements_located((By.XPATH,'//div[@class="domestic_Flight__sK0eA"]')))
 print(elem)
@@ -107,6 +166,7 @@ while True:
     if prev_height == curr_height:
         break
     prev_height = curr_height
+<<<<<<< HEAD
     print("현재 높이 : ",curr_height)
     
 # 웹 스크래핑을 하면 됨.
@@ -134,5 +194,31 @@ browser.quit()
 # # id를 가지고 선택방법
 # '//i[@id="_next"]'
 
+=======
+    print("현재 높이 : ", curr_height)
+    
+# 웹 스크래핑을 하면 됨
+soup = BeautifulSoup(browser.page_source,"lxml")
+with open("flight.html","w",encoding="utf8") as f:
+    f.write(soup.prettify())
+    
+input("Enter 키를 입력하면 프로그램을 종료합니다.")
+browser.quit()
+
+
+
+# time.sleep(50)
+
+# # 실제구문 - 1개 가져오기 : find_element
+# browser.find_element(By.XPATH,'//i[text()="김포국제공항"]')
+# # 실제구문 - 여러개 가져오기 : find_elements
+# browser.find_elements(By.XPATH, '//b[text()="15"]')
+# # 문자열과 일치할때 선택방법
+# '//i[text()="김포국제공항"]'
+# # 문자열이 포함되어 있을때 선택방법
+# '//i[contains(text(),"김포국제공항")]'
+# # id를 가지고 선택방법
+# '//i[@id="_next"]'
+>>>>>>> 2c9054a0483fd44bb3c39c3efad552f09d558d7f
 # #class를 가지고 선택방법
 # '//i[@class="_next"]'
