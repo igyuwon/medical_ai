@@ -1,13 +1,13 @@
--- trunc ¹ö¸², round ¹İ¿Ã¸²
+-- trunc ë²„ë¦¼, round ë°˜ì˜¬ë¦¼
 select sysdate,hire_date,trunc(sysdate - hire_date) from employees;
 select sysdate,hire_date,round(sysdate - hire_date,3) from employees;
 
--- ¾îÁ¦ sysdate-1, ³»ÀÏ sysdate+1
-select sysdate-1 ¾îÁ¦, sysdate ¿À´Ã, sysdate+1 ³»ÀÏ from dual;
+-- ì–´ì œ sysdate-1, ë‚´ì¼ sysdate+1
+select sysdate-1 ì–´ì œ, sysdate ì˜¤ëŠ˜, sysdate+1 ë‚´ì¼ from dual;
 
--- m_mo - ½ÃÄö½º 1-9999 1¾¿ Áõ°¡
--- ÄûÁî m_no,m_yesterday,m_today,m_tomorrow,m_year ³¯Â¥ÄÃ·³À» °¡Áø Å×ÀÌºí m_date
--- ¾îÁ¦, ¿À´Ã, ³»ÀÏ, 1³â ÈÄ ³¯Â¥¸¦ ÀúÀåÇÏ½Ã¿À.
+-- m_mo - ì‹œí€€ìŠ¤ 1-9999 1ì”© ì¦ê°€
+-- í€´ì¦ˆ m_no,m_yesterday,m_today,m_tomorrow,m_year ë‚ ì§œì»¬ëŸ¼ì„ ê°€ì§„ í…Œì´ë¸” m_date
+-- ì–´ì œ, ì˜¤ëŠ˜, ë‚´ì¼, 1ë…„ í›„ ë‚ ì§œë¥¼ ì €ì¥í•˜ì‹œì˜¤.
 
 create sequence m_no
 increment by 1
@@ -25,21 +25,21 @@ m_yesterday date,m_today date, m_tomorrow date, m_year date
 insert into m_date(m_no,m_yesterday,m_today,m_tomorrow,m_year) values(
 m_no.nextval, sysdate-1,sysdate,sysdate+1,sysdate+365);
 
--- °Ë»ö
+-- ê²€ìƒ‰
 select * from m_date;
 
--- abs Àı´ë°ª, ceil,floor round,trunc - ÀÚ¸´¼ö
+-- abs ì ˆëŒ€ê°’, ceil,floor round,trunc - ìë¦¿ìˆ˜
 select abs(hire_date-sysdate) from employees;
 
 select hire_date, round(hire_date) from employees;
 
--- ³¯Â¥ÀÇ ¿ùÀ» ±âÁØÀ¸·Î ¹İ¿Ã¸²
+-- ë‚ ì§œì˜ ì›”ì„ ê¸°ì¤€ìœ¼ë¡œ ë°˜ì˜¬ë¦¼
 select hire_date, round(hire_date,'month') from employees;
 
--- ³¯Â¥ÀÇ ¿ùÀ» ±âÁØÀ¸·Î ¹ö¸²
+-- ë‚ ì§œì˜ ì›”ì„ ê¸°ì¤€ìœ¼ë¡œ ë²„ë¦¼
 select hire_date, trunc(hire_date,'month'),round(hire_date,'month') from employees;
 
-select trunc(hire_date,'month') ±âÁØÀÏ, hire_date from employees
+select trunc(hire_date,'month') ê¸°ì¤€ì¼, hire_date from employees
 order by hire_date;
 
 select * from channels;
@@ -55,44 +55,44 @@ select trunc(kor,-1) t_kor, count(trunc(kor,-1)) from students
 group by trunc(kor,-1)
 order by t_kor;
 
--- ³¯Â¥ÀÇ ¿ùÀ» ±âÁØÀ¸·Î ¹ö¸²
+-- ë‚ ì§œì˜ ì›”ì„ ê¸°ì¤€ìœ¼ë¡œ ë²„ë¦¼
 select trunc(hire_date,'month') m_hire_date,count(trunc(hire_date,'month')) from employees
 group by trunc(hire_date,'month')
 order by m_hire_date;
 
 select * from stu_score
 order by no;
-update stu_score set name = '°ü¼ø½º'
+update stu_score set name = 'ê´€ìˆœìŠ¤'
 where no = 10;
 
 -- update stu_score set avg=(total/3);
 
 select * from stu_score;
 
--- 2°³ÀÇ ³¯Â¥¿¡¼­ ¿ù °£°İÀ» È®ÀÎ
+-- 2ê°œì˜ ë‚ ì§œì—ì„œ ì›” ê°„ê²©ì„ í™•ì¸
 select hire_date, floor(months_between(sysdate,hire_date)), trunc(sysdate-hire_date,2) from employees;
 
--- °³¿ù Ãß°¡
+-- ê°œì›” ì¶”ê°€
 select hire_date, add_months(hire_date,6) from employees;
 
 -- last day
 select hire_date, last_day(hire_date),round(hire_date,'d') from employees;
 
--- ÇöÀçÀÏ, Ã³À½ÀÏ, ¸¶Áö¸·ÀÏ
-select sysdate ÇöÀçÀÏ,trunc(sysdate,'month') Ã³À½ÀÏ,last_day(sysdate) ¸¶Áö¸·ÀÏ from dual;
+-- í˜„ì¬ì¼, ì²˜ìŒì¼, ë§ˆì§€ë§‰ì¼
+select sysdate í˜„ì¬ì¼,trunc(sysdate,'month') ì²˜ìŒì¼,last_day(sysdate) ë§ˆì§€ë§‰ì¼ from dual;
 
--- Æ¯Á¤ ¿äÀÏÀÇ ³¯Â¥¸¦ È®ÀÎ
-select sysdate, next_day(sysdate,'¼ö¿äÀÏ') from dual;
+-- íŠ¹ì • ìš”ì¼ì˜ ë‚ ì§œë¥¼ í™•ì¸
+select sysdate, next_day(sysdate,'ìˆ˜ìš”ì¼') from dual;
 
--- ÇÑÁÖÀÇ Ã³À½ÀÏ
-select sysdate,trunc(sysdate,'d'), next_day(sysdate,'Åä¿äÀÏ') from dual;
+-- í•œì£¼ì˜ ì²˜ìŒì¼
+select sysdate,trunc(sysdate,'d'), next_day(sysdate,'í† ìš”ì¼') from dual;
 
--- board Å×ÀÌºí default´Â ÀÔ·ÂÀÌ ¾øÀ» ½Ã ÁöÁ¤ÇÑ µ¥ÀÌÅÍ°¡ ÀÚµ¿ÀÔ·ÂµÊ.
+-- board í…Œì´ë¸” defaultëŠ” ì…ë ¥ì´ ì—†ì„ ì‹œ ì§€ì •í•œ ë°ì´í„°ê°€ ìë™ì…ë ¥ë¨.
 create table board(
-bno number(4) primary key, -- Áßº¹ÀÌ ¾ÈµÊ, null Çã¿ëÇÏÁö¾ÊÀ½. ±âº»Å°·Î »ç¿ëµÊ.
+bno number(4) primary key, -- ì¤‘ë³µì´ ì•ˆë¨, null í—ˆìš©í•˜ì§€ì•ŠìŒ. ê¸°ë³¸í‚¤ë¡œ ì‚¬ìš©ë¨.
 id varchar2(30),
 btitle varchar2(1000),
-bcontent clob, -- varchar2(3000) clob -- ¹«Á¦ÇÑ: varchar2ÀÇ Å¸ÀÔ
+bcontent clob, -- varchar2(3000) clob -- ë¬´ì œí•œ: varchar2ì˜ íƒ€ì…
 bdate date default sysdate,
 bhit number default 0,
 bgroup number,
@@ -102,16 +102,16 @@ bfile varchar2(100)
 );
 
 insert into board values(
-board_seq.nextval,'aaa','Á¦¸ñÀÔ´Ï´Ù.','³»¿ëÀÔ´Ï´Ù.',sysdate,0,board_seq.currval,0,0,'1.jpg'
+board_seq.nextval,'aaa','ì œëª©ì…ë‹ˆë‹¤.','ë‚´ìš©ì…ë‹ˆë‹¤.',sysdate,0,board_seq.currval,0,0,'1.jpg'
 );
 
 insert into board (bno,id,btitle,bcontent,bgroup,bfile) values(
-board_seq.nextval, 'bbb','ÀÌº¥Æ® ½ÅÃ»','ÀÌº¥Æ®¸¦ ½ÅÃ»ÇÕ´Ï´Ù.',board_seq.currval,'2.jpg'
+board_seq.nextval, 'bbb','ì´ë²¤íŠ¸ ì‹ ì²­','ì´ë²¤íŠ¸ë¥¼ ì‹ ì²­í•©ë‹ˆë‹¤.',board_seq.currval,'2.jpg'
 );
 
 select * from board;
 
--- Çüº¯È¯ - number,character, date
+-- í˜•ë³€í™˜ - number,character, date
 select sysdate from dual;
 select sysdate,to_char(sysdate,'yyyy-mm-dd hh:mi:ss') from dual;
 select to_char(sysdate,'yy/mm/dd') from dual;
@@ -127,7 +127,7 @@ select to_char(sysdate,'yyyy-mm-dd hh:mi:ss mon day') from dual;
 -- hire_date, yyyy-mm-dd hh:mi:ss mon day
 select to_char(hire_date, 'yyyy-mm-dd hh:mi:ss mon day') from employees;
 
--- am,pm ¿ÀÀü,¿ÀÈÄ  hh24 24½Ã°£À¸·Î Ç¥½Ã
+-- am,pm ì˜¤ì „,ì˜¤í›„  hh24 24ì‹œê°„ìœ¼ë¡œ í‘œì‹œ
 select to_char(sysdate,'am hh:mi:ss') from dual;
 
 select * from stu_score;
@@ -135,63 +135,63 @@ select * from stu_score;
 select to_char(c_date,'yyyy-mm-dd hh:mi:ss day') from stu_score
 order by c_date;
 
--- ³¯Â¥º°·Î ¸î°³ÀÇ µ¥ÀÌÅÍ°¡ µé¾î°¡ ÀÖ´ÂÁö Ãâ·ÂÇÏ½Ã¿À.
+-- ë‚ ì§œë³„ë¡œ ëª‡ê°œì˜ ë°ì´í„°ê°€ ë“¤ì–´ê°€ ìˆëŠ”ì§€ ì¶œë ¥í•˜ì‹œì˜¤.
 select c_date,count(c_date) from stu_score
 group by c_date
 order by c_date;
 
--- ¹®ÀÚÇü »çÄ¢¿¬»ê(+,-,*,/) ¾ÈµÊ. ÀÚ¸®¼ö Ç¥½Ã, ½°Ç¥Ç¥½Ã, ³¯ÀÚÇüÅÂ Ç¥½Ã
--- ¼ıÀÚÇü »çÄ¢¿¬»ê °¡´É, ÄÃ·³º° »çÄ¢¿¬»ê°¡´É ÀÚ¸®¼öÇ¥½Ã, ½°Ç¥Ç¥½Ã ¾ÈµÊ.
--- ³¯Â¥Çü +,- ¿¬»ê±â´É°¡´É,month-between 2°³ ³¯Â¥ ´Ş °è»ê. ³¯Â¥À¯ÇüÀ» ÁöÁ¤ÇØ¼­ Ãâ·ÂÀÌ ¾ÈµÊ.
+-- ë¬¸ìí˜• ì‚¬ì¹™ì—°ì‚°(+,-,*,/) ì•ˆë¨. ìë¦¬ìˆ˜ í‘œì‹œ, ì‰¼í‘œí‘œì‹œ, ë‚ ìí˜•íƒœ í‘œì‹œ
+-- ìˆ«ìí˜• ì‚¬ì¹™ì—°ì‚° ê°€ëŠ¥, ì»¬ëŸ¼ë³„ ì‚¬ì¹™ì—°ì‚°ê°€ëŠ¥ ìë¦¬ìˆ˜í‘œì‹œ, ì‰¼í‘œí‘œì‹œ ì•ˆë¨.
+-- ë‚ ì§œí˜• +,- ì—°ì‚°ê¸°ëŠ¥ê°€ëŠ¥,month-between 2ê°œ ë‚ ì§œ ë‹¬ ê³„ì‚°. ë‚ ì§œìœ í˜•ì„ ì§€ì •í•´ì„œ ì¶œë ¥ì´ ì•ˆë¨.
 
--- ¹®ÀÚÇü ¾È¿¡ ÀÖ´Â µ¥ÀÌÅÍ°¡ ¼ıÀÚÀÌ¸é ÀÚµ¿À¸·Î Çüº¯È¯ÇØ¼­ °è»êÇØÁÜ.
--- ¹®ÀÚÇü¿¡¼­ ¹®ÀÚ°¡ ÀÖÀ¸¸é ÀÚµ¿Çüº¯È¯ ºÒ°¡
+-- ë¬¸ìí˜• ì•ˆì— ìˆëŠ” ë°ì´í„°ê°€ ìˆ«ìì´ë©´ ìë™ìœ¼ë¡œ í˜•ë³€í™˜í•´ì„œ ê³„ì‚°í•´ì¤Œ.
+-- ë¬¸ìí˜•ì—ì„œ ë¬¸ìê°€ ìˆìœ¼ë©´ ìë™í˜•ë³€í™˜ ë¶ˆê°€
 select 10 a, 100 b, (10+100) ab,20+to_char(100), 10+'100' from dual;
--- select 10 a, 100 b, (10+100) ab,to_char(100), 10+'100¿ø' from dual;
+-- select 10 a, 100 b, (10+100) ab,to_char(100), 10+'100ì›' from dual;
 
--- '0000' ºóÀÚ¸®´Â 0À¸·Î Ã¤¿ò, '9999' ºóÀÚ¸®¸¦ ºóÀÚ¸® µÒ.
+-- '0000' ë¹ˆìë¦¬ëŠ” 0ìœ¼ë¡œ ì±„ì›€, '9999' ë¹ˆìë¦¬ë¥¼ ë¹ˆìë¦¬ ë‘ .
 select 12340000, to_char(12340000), length(to_char(12340000,'999,999,999')) from dual;
 select length(12340000), to_char(12340000), to_char(12340000,'000,999,999'),
 length(to_char(12340000,'999,999,999')) from dual;
 
--- LÀº ¿øÈ­ Ç¥½Ã
+-- Lì€ ì›í™” í‘œì‹œ
 select 12340000, to_char(12340000,'L999,999,999') from dual;
--- $´Â $Ç¥½Ã
+-- $ëŠ” $í‘œì‹œ
 select 12340000, to_char(12340000,'$999,999,999') from dual;
--- 10°³ÀÚ¸®¼ö Ç¥½Ã
--- °ø¹éÁ¦°ÅÇØ¼­ ÀÚ¸®¼ö È®ÀÎ trim
+-- 10ê°œìë¦¬ìˆ˜ í‘œì‹œ
+-- ê³µë°±ì œê±°í•´ì„œ ìë¦¬ìˆ˜ í™•ì¸ trim
 select length(trim(to_char(1234,'0000000000'))),length(trim(to_char(12345,'999,999'))) from dual;
 
--- ÄûÁî
+-- í€´ì¦ˆ
 -- 123,456,789 100,000
--- 123,456,789 + 100,000 = °ªÀ» Ãâ·ÂÇÏ½Ã¿À. Ãµ´ÜÀ§ Ç¥½ÃÇÒ °Í
+-- 123,456,789 + 100,000 = ê°’ì„ ì¶œë ¥í•˜ì‹œì˜¤. ì²œë‹¨ìœ„ í‘œì‹œí•  ê²ƒ
 select to_char(123456789,'999,999,999'),to_char(100000,'999,999'),to_char(123456789+100000,'000,000,000') from dual;
 select 123456789+100000 from dual;
--- 123,456,789 ½°Ç¥¸¦ Á¦°Å - replace('123,456,789',',','')
--- Å¸ÀÔÀ» numberÇüÀ¸·Î º¯°æ
--- ´õÇÏ±â¸¦ ÇÔ.
--- ¹®ÀÚÇü Å¸ÀÔÀ¸·Î º¯°æÇØ¼­ ½°Ç¥ Ç¥½Ã
+-- 123,456,789 ì‰¼í‘œë¥¼ ì œê±° - replace('123,456,789',',','')
+-- íƒ€ì…ì„ numberí˜•ìœ¼ë¡œ ë³€ê²½
+-- ë”í•˜ê¸°ë¥¼ í•¨.
+-- ë¬¸ìí˜• íƒ€ì…ìœ¼ë¡œ ë³€ê²½í•´ì„œ ì‰¼í‘œ í‘œì‹œ
 -- total = '123,456,789'
 -- wire = '100,000'
 select (123,456,789)+(100,000) from dual;
 
--- µ¥ÀÌÅÍÀÇ ±æÀÌ ÇÔ¼ö
-select length('¾È³çÇÏ¼¼¿ä') from dual;
+-- ë°ì´í„°ì˜ ê¸¸ì´ í•¨ìˆ˜
+select length('ì•ˆë…•í•˜ì„¸ìš”') from dual;
 select length(1234000) from dual;
 select to_char(to_number(replace('123,456,789',',',''))+to_number(replace('100,000,',',','')),'L999,999,999') from dual;
 
 select to_number('0000123') from dual;
 
--- ³¯Â¥Çü
--- ¹®ÀÚÇü +,- ¾ÈµÊ.
+-- ë‚ ì§œí˜•
+-- ë¬¸ìí˜• +,- ì•ˆë¨.
 select '2024-04-24'-'2024-04-23' from dual;
 select to_date('2024-04-24')-to_date('2024-04-01') from dual;
 select to_date('2024/04/24')-to_date('2024/04/01') from dual;
 select to_date('24/04/24')-to_date('24/04/01') from dual;
 select to_date('20240401') from dual;
 
--- ÄûÁî 20240401'
--- 2024-04-01 Å¸ÀÔÀ¸·Î º¯°æÇØ¼­ Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ 20240401'
+-- 2024-04-01 íƒ€ì…ìœ¼ë¡œ ë³€ê²½í•´ì„œ ì¶œë ¥í•˜ì‹œì˜¤.
 select to_date('20240401') from dual;
 select to_char(to_date('20240401'),'yyyy-mm-dd hh:mi:ss') from dual;
 
@@ -205,27 +205,25 @@ where c_date = '2024/04/10';
 select sysdate-hire_date from employees;
 select sysdate-to_date('2024/04/01') from dual;
 
--- ÄûÁî
--- 20,000 / 10,000 ¹®ÀÚÇüÀ» »©±â 10,000 Ãâ·ÂÇÏ½Ã¿À 
+-- í€´ì¦ˆ
+-- 20,000 / 10,000 ë¬¸ìí˜•ì„ ë¹¼ê¸° 10,000 ì¶œë ¥í•˜ì‹œì˜¤ 
 select to_char(to_number('20,000','99,999')-to_number('10,000','99,999'),'99,999') from dual;
 
--- ÄûÁî
--- ½ÇÁ¦ ¿ù±Ş = ¿ù±Ş + (¿ù±Ş*Ä¿¹Ì¼Ç) ½ÇÁ¦¿ù±ŞÀ» Ãâ·Â
+-- í€´ì¦ˆ
+-- ì‹¤ì œ ì›”ê¸‰ = ì›”ê¸‰ + (ì›”ê¸‰*ì»¤ë¯¸ì…˜) ì‹¤ì œì›”ê¸‰ì„ ì¶œë ¥
 select salary,nvl(commission_pct,0), salary + salary*nvl(commission_pct,0) from employees;
 
--- Ä¿¹Ì¼Ç¿¡¼­ null°ª¸¸ Ãâ·Â
+-- ì»¤ë¯¸ì…˜ì—ì„œ nullê°’ë§Œ ì¶œë ¥
 select emp_name,commission_pct from employees
 where commission_pct is null;
 
 select manager_id from employees
 order by manager_id desc;
 
--- ÄûÁî manager_id nullÀÌ¸é 0ÀÔ·Â
+-- í€´ì¦ˆ manager_id nullì´ë©´ 0ì…ë ¥
 select manager_id, nvl(manager_id,0) from employees
 order by manager_id desc;
 
--- ÄûÁî manager_id nullÀÌ¸é ceo·Î ÀÔ·Â
+-- í€´ì¦ˆ manager_id nullì´ë©´ ceoë¡œ ì…ë ¥
 select manager_id,nvl(to_char(manager_id),'ceo') from employees
 order by manager_id desc;
-
-

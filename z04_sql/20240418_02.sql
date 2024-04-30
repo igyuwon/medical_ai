@@ -1,12 +1,12 @@
--- °¡Áö°í ÀÖ´Â Å×ÀÌºí °Ë»ö
+-- ê°€ì§€ê³  ìˆëŠ” í…Œì´ë¸” ê²€ìƒ‰
 select * from tab;
 
 select * from employees;
 
--- Å×ÀÌºí ±¸Á¶È®ÀÎ
+-- í…Œì´ë¸” êµ¬ì¡°í™•ì¸
 desc employees;
 
--- Å×ÀÌºí »ı¼º
+-- í…Œì´ë¸” ìƒì„±
 create table stu_score (
     no number(2),
     kor number(3),
@@ -39,11 +39,11 @@ eng number,
 avg number(4,1)
 );
 
--- ³¯Â¥ 24/01/01 ±âº» ÇüÅÂ
--- dual °¡»óÅ×ÀÌºí
+-- ë‚ ì§œ 24/01/01 ê¸°ë³¸ í˜•íƒœ
+-- dual ê°€ìƒí…Œì´ë¸”
 select sysdate from dual;
 
--- ³¯Â¥ Æ÷¸Ëº¯°æ : to_char Çüº¯È¯ -> Æ÷¸ËÀ» ÁöÁ¤
+-- ë‚ ì§œ í¬ë§·ë³€ê²½ : to_char í˜•ë³€í™˜ -> í¬ë§·ì„ ì§€ì •
 select to_char(sysdate,'yyyy-mm-dd hh:mi:ss') from dual;
 
 select to_char(sysdate,'hh:mi:ss') from dual;
@@ -51,7 +51,3 @@ select to_char(sysdate,'hh:mi:ss') from dual;
 select sysdate+1000 from dual;
 
 select sysdate - to_date('24/01/01') from dual;
-
-
-
-

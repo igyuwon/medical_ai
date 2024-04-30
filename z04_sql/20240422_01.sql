@@ -4,14 +4,14 @@ select employee_id,emp_name from employees;
 
 select salary from employees;
 
--- Å¸ÀÔ : number +,-,*,/ °¡´É
+-- íƒ€ìž… : number +,-,*,/ ê°€ëŠ¥
 select salary, salary * 1400 k_sal,salary*1400*12 as y_sal from employees;
 
 select * from stu_score;
 
 select no,name,kor,eng,math,total,avg,rank from stu_score;
 
--- ÆÄÀÌ½ã.
+-- íŒŒì´ì¬.
 
 select department_id from employees;
 
@@ -19,21 +19,21 @@ select nvl(department_id,0) from employees;
 
 select * from employees;
 
--- º°Äª : as»ç¿ë, "" : Å°¿öµå¸¦ ÀÖ´Â ±×´ë·Î »ç¿ë
+-- ë³„ì¹­ : asì‚¬ìš©, "" : í‚¤ì›Œë“œë¥¼ ìžˆëŠ” ê·¸ëŒ€ë¡œ ì‚¬ìš©
 select salary, salary + (salary*nvl(commission_pct,0)) as "real_sal*" from employees;
 
--- ÇÑ±Û »ç¿ë°¡´É
-select salary as "³âºÀ" from employees;
+-- í•œê¸€ ì‚¬ìš©ê°€ëŠ¥
+select salary as "ë…„ë´‰" from employees;
 
 -- 
 
 select * from departments;
 
--- ºÎ¼­¹øÈ£, ºÎ¼­ÀÌ¸§À» Ãâ·ÂÇÏ½Ã¿À.
+-- ë¶€ì„œë²ˆí˜¸, ë¶€ì„œì´ë¦„ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select department_id,department_name from departments;
 
--- ¿©·¯°³ÀÇ µ¥ÀÌÅÍ¸¦ 1°³¶ó ÇÕÃÄ¼­ ³Ñ°Ü¾ß ÇÒ °æ¿ì concat
--- concat : È«±æµ¿,À¯°ü¼ø,ÀÌ¼ø½Å,°­°¨Âù,±è±¸ -> split(",") : ºÐ¸® 
+-- ì—¬ëŸ¬ê°œì˜ ë°ì´í„°ë¥¼ 1ê°œë¼ í•©ì³ì„œ ë„˜ê²¨ì•¼ í•  ê²½ìš° concat
+-- concat : í™ê¸¸ë™,ìœ ê´€ìˆœ,ì´ìˆœì‹ ,ê°•ê°ì°¬,ê¹€êµ¬ -> split(",") : ë¶„ë¦¬ 
 
 select * from stu_score;
 
@@ -42,8 +42,8 @@ select kor||','||eng||','||math stu from stu_score;
 
 select kor+eng+math as total,(kor+eng+math)/3 from stu_score;
 
--- Áßº¹Á¦°Å : distinct
--- where : Á¶°ÇÀý not Á¦°ÅÇÏ°í °Ë»öÇÏ·Á¸é is not null
+-- ì¤‘ë³µì œê±° : distinct
+-- where : ì¡°ê±´ì ˆ not ì œê±°í•˜ê³  ê²€ìƒ‰í•˜ë ¤ë©´ is not null
 select distinct department_id from employees where department_id is not null;
 
 -- manager_id
@@ -65,32 +65,32 @@ where employee_id >= 200 and employee_id <=203;
 select * from employees
 where employee_id <= 150 or employee_id>=200;
 
--- department_id 10,30,50¿¡ ÇØ´çµÇ´Â »ç¿øÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- department_id 10,30,50ì— í•´ë‹¹ë˜ëŠ” ì‚¬ì›ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select employee_id,department_id,salary from employees
 where department_id = 10 or department_id = 30 or department_id = 50;
 
--- ¿ù±Þ 6000 ~ 9000 ÀÌÇÏÀÎ »ç¿øÀ» Ãâ·ÂÇÏ½Ã¿À.
--- Á¤·Ä order by ÄÃ·³ asc : ¼øÂ÷Á¤·Ä,desc : ¿ª¼øÁ¤·Ä
+-- ì›”ê¸‰ 6000 ~ 9000 ì´í•˜ì¸ ì‚¬ì›ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+-- ì •ë ¬ order by ì»¬ëŸ¼ asc : ìˆœì°¨ì •ë ¬,desc : ì—­ìˆœì •ë ¬
 select salary from employees where salary>=6000 and salary<=9000
 order by salary desc
 ;
--- ¿ù±Þ 6000,7000,8000 ÀÎ »ç¿øÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- ì›”ê¸‰ 6000,7000,8000 ì¸ ì‚¬ì›ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select salary from employees
 where salary =6000 or salary=7000 or salary = 8000;
 
--- ºÎ¼­¹øÈ£°¡ 50¹øÀÌ¸é¼­, ¿ù±ÞÀÌ 8000 ÀÌ»óÀÎ »ç¿øÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- ë¶€ì„œë²ˆí˜¸ê°€ 50ë²ˆì´ë©´ì„œ, ì›”ê¸‰ì´ 8000 ì´ìƒì¸ ì‚¬ì›ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select department_id,salary from employees
 where department_id=50 and salary >= 8000;
 
--- stu_score È«±æµ¿ Ãâ·ÂÇÏ½Ã¿À.
+-- stu_score í™ê¸¸ë™ ì¶œë ¥í•˜ì‹œì˜¤.
 select * from stu_score
-where name = 'È«±æµ¿';
+where name = 'í™ê¸¸ë™';
 
--- ¼øÂ÷Á¤·Ä
+-- ìˆœì°¨ì •ë ¬
 select hire_date from employees
 order by hire_date asc
 ;
--- ¿ª¼øÁ¤·Ä
+-- ì—­ìˆœì •ë ¬
 select hire_date from employees
 order by hire_date desc
 ;
@@ -101,15 +101,15 @@ order by hire_date asc
 ;
 
 select hire_date,hire_date+100 from employees;
--- ¹Ý¿Ã¸² round
+-- ë°˜ì˜¬ë¦¼ round
 select round(sysdate-hire_date,2) from employees;
 
 select * from employees;
 
--- ¹®ÀÚÇÕÄ¡±â´Â +¿¬»êÀÚ ºÒ°¡´É, ||¸í·É¾î »ç¿ë
+-- ë¬¸ìží•©ì¹˜ê¸°ëŠ” +ì—°ì‚°ìž ë¶ˆê°€ëŠ¥, ||ëª…ë ¹ì–´ ì‚¬ìš©
 select emp_name||email from employees;
 
--- ÀÔ»çÀÏ 05³â ÀÌ»ó 06³â ÀÌÇÏÀÌ¸é¼­ ¿ù±ÞÀÌ 6000 ´Þ·¯ ÀÌ»óÀÎ »ç¿øÀ» ÀÔ»çÀÏ ¿ª¼øÁ¤·Ä·Î Ãâ·ÂÇÏ½Ã¿À.
+-- ìž…ì‚¬ì¼ 05ë…„ ì´ìƒ 06ë…„ ì´í•˜ì´ë©´ì„œ ì›”ê¸‰ì´ 6000 ë‹¬ëŸ¬ ì´ìƒì¸ ì‚¬ì›ì„ ìž…ì‚¬ì¼ ì—­ìˆœì •ë ¬ë¡œ ì¶œë ¥í•˜ì‹œì˜¤.
 select emp_name,hire_date,salary from employees
 where hire_date >= '05/01/01' and hire_date <= '06/12/31' and salary >=6000
 order by hire_date desc
@@ -121,20 +121,20 @@ where department_id != 10 and not department_id = 50
 order by department_id
 ;
 
--- salary 5000 ÀÌ»ó 9000 ÀÌÇÏ
+-- salary 5000 ì´ìƒ 9000 ì´í•˜
 select emp_name,salary from employees
 where salary >= 5000 and salary <= 9000
 order by salary
 ;
 
--- Æò±ÕÀÌ 99Á¡ ÀÌ»óÀÎ ÇÐ»ýÀ» °Ë»öÇÏ½Ã¿À.
+-- í‰ê· ì´ 99ì  ì´ìƒì¸ í•™ìƒì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
 select * from stu_score
 where avg>=99
 ;
 
 select * from students;
 
-update students set name='°ü¼ø½º' 
+update students set name='ê´€ìˆœìŠ¤' 
 where no = 10
 ;
 
@@ -143,16 +143,16 @@ commit;
 select * from students;
 
 -- students
--- ±¹¾î°¡ 70, Æò±Õ 75Á¡ ÀÌ»óÀÎ ÇÐ»ýÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- êµ­ì–´ê°€ 70, í‰ê·  75ì  ì´ìƒì¸ í•™ìƒì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select name,kor,avg from students
 where kor>=70 and avg>=75
 ;
 
--- ±¹¾îÁ¡¼ö 80, ±¹¾îÁ¡¼ö 70, ±¹¾îÁ¡¼ö 90 ÀÎ ÇÐ»ýÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- êµ­ì–´ì ìˆ˜ 80, êµ­ì–´ì ìˆ˜ 70, êµ­ì–´ì ìˆ˜ 90 ì¸ í•™ìƒì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select name,kor from students
 where kor=80 or kor = 70 or kor = 90;
 
--- in ¿¬»ê µ¿ÀÏÇÑ ÇÊµå°¡ ¿©·¯°³ÀÇ °ª Áß¿¡ ÇÏ³ª¸¦ °Ë»öÇÒ °æ¿ì
+-- in ì—°ì‚° ë™ì¼í•œ í•„ë“œê°€ ì—¬ëŸ¬ê°œì˜ ê°’ ì¤‘ì— í•˜ë‚˜ë¥¼ ê²€ìƒ‰í•  ê²½ìš°
 select name,kor from students
 where kor in(80,70,90);
 
@@ -168,76 +168,76 @@ rollback;
 select * from students
 where no = 1;
 
--- ¼öÁ¤
+-- ìˆ˜ì •
 update students set kor=100, total = 100+eng+math, avg = (100+eng+math)/3
 where no=1;
 
 
--- ±¹¾îÁ¡¼ö 70 ~ 90 ÀÌ»ó ÇÐ»ýÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- êµ­ì–´ì ìˆ˜ 70 ~ 90 ì´ìƒ í•™ìƒì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select kor from students
 where kor > 70 and kor <= 90
 ;
 
--- 100¸í
+-- 100ëª…
 select * from students;
 
--- 27¸í between a and b : aº¸´Ù Å©°Å³ª °°°í bº¸´Ù ÀÛ°Å³ª °°Àº °Í °Ë»ö
+-- 27ëª… between a and b : aë³´ë‹¤ í¬ê±°ë‚˜ ê°™ê³  bë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ì€ ê²ƒ ê²€ìƒ‰
 select kor from students
 where kor between 70 and 90
 ;
 
--- 73¸í not between a and b : aº¸´Ù Å©°Å³ª , bº¸´Ù ÀÛÀº°Í °Ë»ö
+-- 73ëª… not between a and b : aë³´ë‹¤ í¬ê±°ë‚˜ , bë³´ë‹¤ ìž‘ì€ê²ƒ ê²€ìƒ‰
 select kor from students
 where kor not between 70 and 90
 ;
 
--- ³¯Â¥µµ between a and b
+-- ë‚ ì§œë„ between a and b
 
 select hire_date from employees
 order by hire_date;
 
--- ÀÔ»çÀÏ 99³âº¸´Ù Å©°Å³ª °°°í, 01³â º¸´Ù ÀÛ°Å³ª °°Àº »ç¿ø °Ë»ö
+-- ìž…ì‚¬ì¼ 99ë…„ë³´ë‹¤ í¬ê±°ë‚˜ ê°™ê³ , 01ë…„ ë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ì€ ì‚¬ì› ê²€ìƒ‰
 select hire_date from employees
 where hire_date between '99/01/01' and '01/12/31'
 order by hire_date asc
 ;
 
--- ÀÌ¸§°Ë»ö
+-- ì´ë¦„ê²€ìƒ‰
 select * from students
-where name='È«±æµ¿'
+where name='í™ê¸¸ë™'
 ;
 
--- like °Ë»ö : Æ¯Á¤´Ü¾î°¡ Æ÷ÇÔµÇ¾î ÀÖ´Â °ÍÀ» °Ë»ö
--- È«% : È«À¸·Î ½ÃÀÛµÇ´Â ´Ü¾î °Ë»ö
+-- like ê²€ìƒ‰ : íŠ¹ì •ë‹¨ì–´ê°€ í¬í•¨ë˜ì–´ ìžˆëŠ” ê²ƒì„ ê²€ìƒ‰
+-- í™% : í™ìœ¼ë¡œ ì‹œìž‘ë˜ëŠ” ë‹¨ì–´ ê²€ìƒ‰
 select * from students
-where name like 'È«%'
+where name like 'í™%'
 ;
 
--- %¼ø : ¼øÀ¸·Î ³¡³ª´Â ´Ü¾î °Ë»ö 
+-- %ìˆœ : ìˆœìœ¼ë¡œ ëë‚˜ëŠ” ë‹¨ì–´ ê²€ìƒ‰ 
 select * from students
-where name like '%¼ø'
+where name like '%ìˆœ'
 ;
 
--- %±æ% : Æ¯Á¤´Ü¾î°¡ Æ÷ÇÔµÇ¾î ÀÖ´Â ´Ü¾î °Ë»ö
+-- %ê¸¸% : íŠ¹ì •ë‹¨ì–´ê°€ í¬í•¨ë˜ì–´ ìžˆëŠ” ë‹¨ì–´ ê²€ìƒ‰
 select * from students
-where name like '%±æ%'
+where name like '%ê¸¸%'
 ;
 
--- _ : ÇÑ Ä­ °ø°£À» »ç¿ë, ±æ ¾Õ¿¡ 1°³ÀÇ ´Ü¾î°¡ ÀÖÀ¸¸é¼­ ±æÀÌ Æ÷ÇÔµÇ¾î ÀÖ´Â ´Ü¾î °Ë»ö
+-- _ : í•œ ì¹¸ ê³µê°„ì„ ì‚¬ìš©, ê¸¸ ì•žì— 1ê°œì˜ ë‹¨ì–´ê°€ ìžˆìœ¼ë©´ì„œ ê¸¸ì´ í¬í•¨ë˜ì–´ ìžˆëŠ” ë‹¨ì–´ ê²€ìƒ‰
 select * from students
-where name like '_±æ%'
+where name like '_ê¸¸%'
 ;
 
 
 select * from students;
 
--- 3¹øÂ°¿¡ t°¡ µé¾î°¡ ÀÖ´Â ÀÌ¸§ °Ë»ö
+-- 3ë²ˆì§¸ì— tê°€ ë“¤ì–´ê°€ ìžˆëŠ” ì´ë¦„ ê²€ìƒ‰
 -- __t
 select * from students
 where name like '__t%'
 ;
 
--- ÀÌ¸§ÀÌ 4ÀÚ¸®ÀÎ, 3¹øÂ° rÀÌ µé¾î°¡ ÀÖ´Â ÀÌ¸§ °Ë»ö
+-- ì´ë¦„ì´ 4ìžë¦¬ì¸, 3ë²ˆì§¸ rì´ ë“¤ì–´ê°€ ìžˆëŠ” ì´ë¦„ ê²€ìƒ‰
 select * from students
 where name like '__r_'
 ;
@@ -246,28 +246,28 @@ select * from students
 where name like '__r%' and length(name) = 4
 ;
 
--- ÀÌ¸§ ±æÀÌ°¡ 4ÀÚ¸® ÀÎ°Í °Ë»ö
+-- ì´ë¦„ ê¸¸ì´ê°€ 4ìžë¦¬ ì¸ê²ƒ ê²€ìƒ‰
 select name from students
 where length(name) = 4
 ;
 
--- ÀÌ¸§ÀÌ A·Î ½ÃÀÛµÇ´Â ÇÐ»ý °Ë»ö
+-- ì´ë¦„ì´ Aë¡œ ì‹œìž‘ë˜ëŠ” í•™ìƒ ê²€ìƒ‰
 select no,name from students
 where name like 'A%'
 ;
 
--- ÀÌ¸§¿¡ a°¡ µé¾î°¡ ÀÖ´Â ÇÐ»ý °Ë»ö
+-- ì´ë¦„ì— aê°€ ë“¤ì–´ê°€ ìžˆëŠ” í•™ìƒ ê²€ìƒ‰
 select no,name from students
 where name like '%a%'
 ;
 
--- ´ë¼Ò¹®ÀÚ ±¸ºÐ¾øÀÌ a°¡ µé¾î°¡ ÀÖ´Â ÇÐ»ý °Ë»ö
--- ¼Ò¹®ÀÚ ÃëÈ¯(lower), ´ë¹®ÀÚ ÃëÈ¯ (upper), Ã¹±ÛÀÚ ´ë¹®ÀÚ (initcap)
+-- ëŒ€ì†Œë¬¸ìž êµ¬ë¶„ì—†ì´ aê°€ ë“¤ì–´ê°€ ìžˆëŠ” í•™ìƒ ê²€ìƒ‰
+-- ì†Œë¬¸ìž ì·¨í™˜(lower), ëŒ€ë¬¸ìž ì·¨í™˜ (upper), ì²«ê¸€ìž ëŒ€ë¬¸ìž (initcap)
 select no,name from students
 where lower(name) like '%a%'
 ;
 
--- a°¡ Æ÷ÇÔµÇÁö ¾ÊÀº ÀÌ¸§À» °Ë»ö
+-- aê°€ í¬í•¨ë˜ì§€ ì•Šì€ ì´ë¦„ì„ ê²€ìƒ‰
 select no,name from students
 where lower(name) not like '%a%'
 ;
@@ -275,17 +275,17 @@ where lower(name) not like '%a%'
 
 select manager_id from employees;
 
--- manager_id 100ÀÎ »ç¿ø °Ë»ö
+-- manager_id 100ì¸ ì‚¬ì› ê²€ìƒ‰
 select employee_id,emp_name,manager_id from employees
 where manager_id = 100
 ;
 
--- null Àº µî°¡ºñ±³°¡ ¾ÈµÊ.
+-- null ì€ ë“±ê°€ë¹„êµê°€ ì•ˆë¨.
 select employee_id,emp_name,managaer_id from employees
 where manager_id = null
 ;
 
--- null°ªÀº is null ¸í·É¾î »ç¿ë
+-- nullê°’ì€ is null ëª…ë ¹ì–´ ì‚¬ìš©
 select employee_id,emp_name,manager_id from employees
 where manager_id is null
 ;
@@ -296,7 +296,7 @@ where manager_id is not null
 
 select * from stu_score;
 
--- ÇÑ±Û Á¤·Ä °¡´É
+-- í•œê¸€ ì •ë ¬ ê°€ëŠ¥
 select * from stu_score
 order by name asc
 ;
@@ -305,21 +305,21 @@ order by name asc
 select * from students;
 
 
--- 1Â÷ ±¹¾îÁ¡¼ö·Î ¿ª¼øÁ¤·Ä ÇÑ ´ÙÀ½, °°Àº Á¡¼öÀÎ °æ¿ì, ¿µ¹®Á¡¼ö·Î ¼øÂ÷Á¤·Ä ÁøÇà
+-- 1ì°¨ êµ­ì–´ì ìˆ˜ë¡œ ì—­ìˆœì •ë ¬ í•œ ë‹¤ìŒ, ê°™ì€ ì ìˆ˜ì¸ ê²½ìš°, ì˜ë¬¸ì ìˆ˜ë¡œ ìˆœì°¨ì •ë ¬ ì§„í–‰
 select * from students
 order by kor desc, eng asc
 ;
 
--- total·Î ¿ª¼øÁ¤·Ä
+-- totalë¡œ ì—­ìˆœì •ë ¬
 
 select * from students
 order by total desc
 ;
 
--- ÄÃ·³Ãß°¡
+-- ì»¬ëŸ¼ì¶”ê°€
 alter table students add rank number(3);
 
--- ÄÃ·³Å¸ÀÔ
+-- ì»¬ëŸ¼íƒ€ìž…
 desc students;
 
 select * from students;
@@ -328,7 +328,7 @@ update students set rank=0;
 
 commit;
 
--- µî¼ö
+-- ë“±ìˆ˜
 select no,rank() over(order by total desc) as rank from students
 ;
 
@@ -350,7 +350,7 @@ select no,rank from students;
 
 
 
--- ¼öÁ¤
+-- ìˆ˜ì •
 update students set rank = 13
 where no = 1
 ;
@@ -359,35 +359,9 @@ select * from students
 where kor>=70;
 
 
-select * from (Å×ÀÌºí);
+select * from (í…Œì´ë¸”);
 
 
 select * from (select * from students where avg>=80)
 where kor>=70
 ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

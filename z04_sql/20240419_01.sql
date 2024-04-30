@@ -1,29 +1,29 @@
 select * from employees;
 
--- È¸¿øÁ¤º¸ Å×ÀÌºí »ı¼º
+-- íšŒì›ì •ë³´ í…Œì´ë¸” ìƒì„±
 create table member (
 id varchar2(20),
 pw varchar2(20),
 name varchar2(20),
 phone varchar2(20)
 );
--- µ¥ÀÌÅÍ ÀÔ·Â
+-- ë°ì´í„° ì…ë ¥
 insert into member (id,pw,name,phone) values (
-'aaa','1111','È«±æµ¿','010-1111-1111'
+'aaa','1111','í™ê¸¸ë™','010-1111-1111'
 );
 
 insert into member values (
-'bbb','1111','À¯°ü¼ø','010-2222-2222'
+'bbb','1111','ìœ ê´€ìˆœ','010-2222-2222'
 );
 
 insert into member (id,name,phone) values(
-'ccc','ÀÌ¼ø½Å','010-3333-3333'
+'ccc','ì´ìˆœì‹ ','010-3333-3333'
 );
 
--- ÄÃ·³¼ö ºÎÁ· ¿¡·¯
+-- ì»¬ëŸ¼ìˆ˜ ë¶€ì¡± ì—ëŸ¬
 /*
 insert into member values (
-'ddd','°­°¨Âù','010-4444-4444'
+'ddd','ê°•ê°ì°¬','010-4444-4444'
 );
 */
 
@@ -38,7 +38,7 @@ select id,name from member;
 select * from member;
 
 insert into member values(
-'ddd','1111','°­°¨Âù','010-4444-4444'
+'ddd','1111','ê°•ê°ì°¬','010-4444-4444'
 );
 
 select * from member;
@@ -55,20 +55,20 @@ select * from member;
 
 rollback;
 
--- ¸ğµç Å×ÀÌºí È®ÀÎ
+-- ëª¨ë“  í…Œì´ë¸” í™•ì¸
 select * from tab;
 
--- Å×ÀÌºíÀÇ Å¸ÀÔ È®ÀÎ
+-- í…Œì´ë¸”ì˜ íƒ€ì… í™•ì¸
 desc member;
 
--- ¿À¶óÅ¬ Å¸ÀÔ
--- number-¼ıÀÚ,date-³¯Â¥,char-°íÁ¤¹®ÀÚ,varchar2-°¡º¯¹®ÀÚ,clob-´ë¿ë·®¹®ÀÚ
+-- ì˜¤ë¼í´ íƒ€ì…
+-- number-ìˆ«ì,date-ë‚ ì§œ,char-ê³ ì •ë¬¸ì,varchar2-ê°€ë³€ë¬¸ì,clob-ëŒ€ìš©ëŸ‰ë¬¸ì
 
--- number : Á¤¼ö,½Ç¼ö
+-- number : ì •ìˆ˜,ì‹¤ìˆ˜
 -- number(4) : -9999~9999
 
 create table mem (
-no number, -- ±æÀÌ ÁöÁ¤ÇÏÁö ¾ÊÀ½.
+no number, -- ê¸¸ì´ ì§€ì •í•˜ì§€ ì•ŠìŒ.
 no2 number(4),
 no3 number(4,2)
 );
@@ -90,11 +90,11 @@ commit;
 create table mem2 (
  no number(4,2),
  mdate date,
- mdate2 timestamp --date : ³â,¿ù,ÀÏ,½Ã,ºĞ,ÃÊ±îÁö ÀúÀå°¡´É / timestamp ¹Ğ¸®ÃÊ±îÁö ÀúÀå°¡´ÉÇÔ.
+ mdate2 timestamp --date : ë…„,ì›”,ì¼,ì‹œ,ë¶„,ì´ˆê¹Œì§€ ì €ì¥ê°€ëŠ¥ / timestamp ë°€ë¦¬ì´ˆê¹Œì§€ ì €ì¥ê°€ëŠ¥í•¨.
 );
 
 insert into mem2 (mdate) values ('2024-04-19' );
-insert into mem2 (mdate) values (sysdate); --sysdate:ÇöÀç½Ã°£
+insert into mem2 (mdate) values (sysdate); --sysdate:í˜„ì¬ì‹œê°„
 insert into mem2 (mdate2) values (sysdate);
 insert into mem2 (mdate,mdate2) values (sysdate,sysdate+30);
 
@@ -117,38 +117,38 @@ mdate2 timestamp
 );
 
 -- char,varchar2
--- char : °íÁ¤¹®ÀÚ
+-- char : ê³ ì •ë¬¸ì
 insert into mem3 (tel) values ('11112222');
 insert into mem3 (tel) values ('22223333');
 insert into mem3 (tel) values ('111');
 insert into mem3 (tel) values ('123456789');
-insert into mem3(tel) values ('È«');
+insert into mem3(tel) values ('í™');
 
--- varchar2 : °¡º¯¹®ÀÚ
+-- varchar2 : ê°€ë³€ë¬¸ì
 insert into mem3 (name) values ('11112222');
-insert into mem3 (name) values ('È«±æµ¿'); --ÇÑ±Û :3Å©±â
-insert into mem3 (name) values ('½Å»çÀÓ´ç'); -- 12ÀÚ¸® ÇÊ¿ä
+insert into mem3 (name) values ('í™ê¸¸ë™'); --í•œê¸€ :3í¬ê¸°
+insert into mem3 (name) values ('ì‹ ì‚¬ì„ë‹¹'); -- 12ìë¦¬ í•„ìš”
 INSERT INTO MEM3 (NAME) VALUES ('AAA');
 insert into mem3 (name) values ('aaa');
 
 commit;
 
 
-select * from mem3 where name='aaa'; -- sql±¸¹®Àº ´ë¼Ò¹®ÀÚ ±¸ºĞ¾øÀ½, µ¥ÀÌÅÍ´Â ´ë¼Ò¹®ÀÚ ±¸ºĞÇÔ.
+select * from mem3 where name='aaa'; -- sqlêµ¬ë¬¸ì€ ëŒ€ì†Œë¬¸ì êµ¬ë¶„ì—†ìŒ, ë°ì´í„°ëŠ” ëŒ€ì†Œë¬¸ì êµ¬ë¶„í•¨.
 select * from mem3 where name='AAA';
 select * from mem3 where lower(name)='aaa';
 
 
--- select,from 2°³ÀÇ Å°¿öµå·Î ±¸¼º µÊ.
--- * ¸ğµç ÄÃ·³À» Ãâ·Â
--- ´ë¼Ò¹®ÀÚ¸¦ ±¸ºĞÇÏÁö ¾ÊÀ½.
+-- select,from 2ê°œì˜ í‚¤ì›Œë“œë¡œ êµ¬ì„± ë¨.
+-- * ëª¨ë“  ì»¬ëŸ¼ì„ ì¶œë ¥
+-- ëŒ€ì†Œë¬¸ìë¥¼ êµ¬ë¶„í•˜ì§€ ì•ŠìŒ.
 select * from mem;
 
 SELECT * FROM MEM;
 
 select emp_name,department_id from employees;
 
--- distinct °°Àº °ÍÀº 1¹ø¸¸ Ãâ·Â
+-- distinct ê°™ì€ ê²ƒì€ 1ë²ˆë§Œ ì¶œë ¥
 select distinct department_id from employees;
 
 select * from departments;
@@ -160,14 +160,14 @@ select no,mdate2,tel,name,mdate from mem3;
 
 select * from employees;
 
--- »ç¿ø¹øÈ£(e id), »ç¿øÀÌ¸§(e name),±Ş¿©(salary), ÀÔ»çÀÏÀÚ(hire_date)
+-- ì‚¬ì›ë²ˆí˜¸(e id), ì‚¬ì›ì´ë¦„(e name),ê¸‰ì—¬(salary), ì…ì‚¬ì¼ì(hire_date)
 select employee_id,emp_name,salary,hire_date from employees;
 
 desc employees;
 
 select * from stu_score;
 
--- Å×ÀÌºí »èÁ¦
+-- í…Œì´ë¸” ì‚­ì œ
 drop table stu_score;
 
 create table stu_score (
@@ -182,11 +182,11 @@ create table stu_score (
 );
 
 insert into stu_score values (
-1,'È«±æµ¿',100,100,100,300,100,1
+1,'í™ê¸¸ë™',100,100,100,300,100,1
 );
 
 insert into stu_score values (
-5,'±è±¸',100,100,100,300,100,1
+5,'ê¹€êµ¬',100,100,100,300,100,1
 );
 
 commit;
@@ -194,53 +194,41 @@ commit;
 select * from stu_score;
 
 
--- »ê¼ú¿¬»êÀÚ numberÅ¸ÀÔÀÎ °æ¿ì
+-- ì‚°ìˆ ì—°ì‚°ì numberíƒ€ì…ì¸ ê²½ìš°
 select * from stu_score;
 
 insert into stu_score values (
-6,'±èÀ¯½Å',100,95,96,(100+95+96),(100+95+96)/3,1
+6,'ê¹€ìœ ì‹ ',100,95,96,(100+95+96),(100+95+96)/3,1
 );
 
 select * from stu_score;
 
 insert into stu_score values (
-7,'È«±æÀÚ',100,100,99,(100+100+99),(100+100+99)/3,1
+7,'í™ê¸¸ì',100,100,99,(100+100+99),(100+100+99)/3,1
 );
 
 select * from stu_score;
 
--- ¹øÈ£,ÀÌ¸§,±¹¾îÁ¡¼ö,±¹¾îÁ¡¼ö-20, Æò±Õ, ±¹¾îÁ¡¼ö-20À» ÇÑ Æò±Õ
+-- ë²ˆí˜¸,ì´ë¦„,êµ­ì–´ì ìˆ˜,êµ­ì–´ì ìˆ˜-20, í‰ê· , êµ­ì–´ì ìˆ˜-20ì„ í•œ í‰ê· 
 select no,name,kor,kor-20,avg,(kor-20+eng+math)/3 from stu_score;
 
 
 select * from employees;
 
--- ´Ş·¯, ¿øÈ­ È¯»ê - 1381.79
+-- ë‹¬ëŸ¬, ì›í™” í™˜ì‚° - 1381.79
 select employee_id,emp_name,salary from employees;
 
 select employee_id,emp_name,salary,salary*1381.79 from employees;
 
--- ¿ù±Ş * 12 = ³âºÀ
--- ´Ş·¯³âºÀ, ¿øÈ­³âºÀÀ» ±¸ÇÏ½Ã¿À.
+-- ì›”ê¸‰ * 12 = ë…„ë´‰
+-- ë‹¬ëŸ¬ë…„ë´‰, ì›í™”ë…„ë´‰ì„ êµ¬í•˜ì‹œì˜¤.
 select employee_id,emp_name,salary*12,salary*12*1381.79 from employees;
 
--- Ä¿¹Ì¼ÇÀº ½ÇÁ¦¿ù±Ş = ¿ù±Ş + ¿ù±Ş*Ä¿¹Ì¼Ç
+-- ì»¤ë¯¸ì…˜ì€ ì‹¤ì œì›”ê¸‰ = ì›”ê¸‰ + ì›”ê¸‰*ì»¤ë¯¸ì…˜
 -- commission_pct
 select * from employees;
 
 select employee_id,emp_name,commission_pct,salary+(salary*commission_pct) from employees;
 
--- nvl(ÄÃ·³,0)
+-- nvl(ì»¬ëŸ¼,0)
 select employee_id,emp_name,nvl(commission_pct,0),salary+(salary*nvl(commission_pct,0)) from employees;
-
-
- 
-
-
-
-
-
-
-
-
-

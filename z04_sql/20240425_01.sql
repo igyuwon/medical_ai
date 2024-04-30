@@ -1,42 +1,42 @@
--- ¾îÁ¦, ¿À´Ã, ³»ÀÏ
+-- ì–´ì œ, ì˜¤ëŠ˜, ë‚´ì¼
 select sysdate-1,sysdate,sysdate+1 from dual;
 
--- ¿À´Ã, ÀÌ´ŞÀÇ Ã¹ÀÏ, ÀÌ´ŞÀÇ ¸¶Áö¸·ÀÏ
+-- ì˜¤ëŠ˜, ì´ë‹¬ì˜ ì²«ì¼, ì´ë‹¬ì˜ ë§ˆì§€ë§‰ì¼
 select sysdate,trunc(sysdate,'month'),last_day(sysdate) from dual;
 
--- µÎ ³¯Â¥°£ ÀÏ¼ö, µÎ ³¯Â¥°£ ´Ş ¼ö
+-- ë‘ ë‚ ì§œê°„ ì¼ìˆ˜, ë‘ ë‚ ì§œê°„ ë‹¬ ìˆ˜
 select round(sysdate-hire_date,3), trunc(months_between(sysdate,hire_date),2) from employees;
 
--- trunc ÀÏ´ÜÀ§ ¹ö¸²
+-- trunc ì¼ë‹¨ìœ„ ë²„ë¦¼
 select trunc(kor,-1) kor, count(trunc(kor,-1)) from stu_score
 group by trunc(kor,-1)
 order by kor;
 
 
 
--- ÄûÁî hire_date ³¯Â¥¿¡¼­ ¿ù¸¸ Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ hire_date ë‚ ì§œì—ì„œ ì›”ë§Œ ì¶œë ¥í•˜ì‹œì˜¤.
 select to_char(hire_date,'yyyy-mm-dd') from employees;
 select to_char(hire_date,'mm') hire_date, count(to_char(hire_date,'mm'))from employees
 group by to_char(hire_date,'mm')
 order by hire_date;
 
--- ÄûÁî hire_date yyyy ³âµµ, ³âµµº° ÀÎ¿ù ¼ö¸¦ Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ hire_date yyyy ë…„ë„, ë…„ë„ë³„ ì¸ì›” ìˆ˜ë¥¼ ì¶œë ¥í•˜ì‹œì˜¤.
 select to_char(hire_date,'yyyy') hire_date, count(to_char(hire_date,'yyyy')) from employees
 group by to_char(hire_date,'yyyy')
 order by hire_date;
 
--- Çüº¯È¯ - number, charactermdate
--- number »çÄ¢¿¬»ê°¡´É, ½°Ç¥Ç¥½Ã¾ÈµÊ, ¿øÈ­Ç¥½Ã¾ÈµÊ.
--- char »çÄ¢¿¬»ê(+,-) ¾ÈµÊ, ½°Ç¥Ç¥½Ã°¡´É, ¿øÈ­Ç¥½Ã°¡´É
--- date +,- °¡´É / ³¯¾¾ Ãâ·ÂÇüÅÂ´Â º¯°æºÒ°¡
+-- í˜•ë³€í™˜ - number, charactermdate
+-- number ì‚¬ì¹™ì—°ì‚°ê°€ëŠ¥, ì‰¼í‘œí‘œì‹œì•ˆë¨, ì›í™”í‘œì‹œì•ˆë¨.
+-- char ì‚¬ì¹™ì—°ì‚°(+,-) ì•ˆë¨, ì‰¼í‘œí‘œì‹œê°€ëŠ¥, ì›í™”í‘œì‹œê°€ëŠ¥
+-- date +,- ê°€ëŠ¥ / ë‚ ì”¨ ì¶œë ¥í˜•íƒœëŠ” ë³€ê²½ë¶ˆê°€
 
--- ½ÃÄö½º ÆòÅÂ·Î ÇĞ¹øÀ» ºÎ¿©ÇÏ½Ã¿À.
--- stu_seq ½ÃÄö½º¸¦ °¡Áö°í 5¸íÀÇ ÇĞ¹øÀ» Ãâ·ÂÇØº¸¼¼¿ä
+-- ì‹œí€€ìŠ¤ í‰íƒœë¡œ í•™ë²ˆì„ ë¶€ì—¬í•˜ì‹œì˜¤.
+-- stu_seq ì‹œí€€ìŠ¤ë¥¼ ê°€ì§€ê³  5ëª…ì˜ í•™ë²ˆì„ ì¶œë ¥í•´ë³´ì„¸ìš”
 -- ko+2024+0001
 select 'ko'||to_char(sysdate,'yyyy')||trim(to_char(stu_seq.nextval,'0000')) from dual;
 
--- (123,456,789)+(156,778) = ? Ãâ·ÂÇÏ½Ã¿À.
--- (123,456,789)+(100,000) = 123556789 Ãâ·ÂÇÏ½Ã¿À.
+-- (123,456,789)+(156,778) = ? ì¶œë ¥í•˜ì‹œì˜¤.
+-- (123,456,789)+(100,000) = 123556789 ì¶œë ¥í•˜ì‹œì˜¤.
 select to_number(replace('123,456,789',',',''))+to_number(replace('156,778',',','')) from dual;
 
 select to_char(to_number('123,456,789','999,999,999')+to_number('100,000','999,999'),'999,999,999') from dual;
@@ -44,32 +44,32 @@ select to_char(to_number('123,456,789','999,999,999')+to_number('100,000','999,9
 
 select to_char(salary,'$999,999') salary from employees;
 
--- ¼ıÀÚÅ¸ÀÔÀ» ³¯Â¥Å¸ÀÔÀ¸·Î º¯°æ
+-- ìˆ«ìíƒ€ì…ì„ ë‚ ì§œíƒ€ì…ìœ¼ë¡œ ë³€ê²½
 select 20240425+3 from dual;
 
 select to_char(20240425+3) from dual;
 select to_date(20240425+3) from dual;
 
--- ¼ıÀÚÅ¸ÀÔÀ» ³¯Â¥Å¸ÀÔÀ¸·Î º¯°æ
+-- ìˆ«ìíƒ€ì…ì„ ë‚ ì§œíƒ€ì…ìœ¼ë¡œ ë³€ê²½
 select emp_name,hire_date from employees
 where hire_date >= to_date(20070101)
 order by hire_date;
 
--- ÄûÁî 08¿ù¿¡ ÀÔ»ç, »ç¿ø ÀÌ¸§ 2¹øÂ°¿¡ a°¡ µé¾î°¡ ÀÖ´Â »ç¶÷À» Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ 08ì›”ì— ì…ì‚¬, ì‚¬ì› ì´ë¦„ 2ë²ˆì§¸ì— aê°€ ë“¤ì–´ê°€ ìˆëŠ” ì‚¬ëŒì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select emp_name,hire_date from employees
 where emp_name like '_a%' and to_char(hire_date,'mm')='08'
 order by hire_date;
 
--- ¿©·¯°³ ÇÏ±âµµ ½¬¿ö¼­ ÀÌ ¹æ¹ıÀÌ ´õ ÁÁÀ» µí
+-- ì—¬ëŸ¬ê°œ í•˜ê¸°ë„ ì‰¬ì›Œì„œ ì´ ë°©ë²•ì´ ë” ì¢‹ì„ ë“¯
 select hire_date from employees
 where to_char(hire_date,'mm') in ('01','05','08');
 
--- ÄûÁî 20070101 ÀÌÈÄ ÀÔ»çÇÑ, »ç¿ø ÀÌ¸§ 2¹øÂ°¿¡ a°¡ µé¾î°¡ ÀÖ´Â »ç¶÷À» Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ 20070101 ì´í›„ ì…ì‚¬í•œ, ì‚¬ì› ì´ë¦„ 2ë²ˆì§¸ì— aê°€ ë“¤ì–´ê°€ ìˆëŠ” ì‚¬ëŒì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select emp_name,hire_date from employees
 where emp_name like '_a%' and to_date(hire_date) >= to_date(20070101)
 order by hire_date;
 
--- ¹®ÀÚÅ¸ÀÔÀ» ³¯Â¥Å¸ÀÔÀ¸·Î º¯°æ
+-- ë¬¸ìíƒ€ì…ì„ ë‚ ì§œíƒ€ì…ìœ¼ë¡œ ë³€ê²½
 select sysdate - to_date('20240401') from dual;
 
 select sysdate,'2024-04-01', sysdate-to_date('2024-04-01') from dual;
@@ -82,16 +82,16 @@ e_today date,
 e_choice_day date,
 e_period number
 );
--- ÀÔ·Â ½Ã ³¯Â¥ Å¸ÀÔ¿¡ ¹®ÀÚ(ÇüÅÂ-³¯Â¥ÇüÅÂ)¸¦ ÀÔ·ÂÇØµµ ÀúÀåµÊ.
--- ³¯Â¥¿Í ¹®ÀÚ¸¦ »©±â´Â ºÒ°¡´É, ±×·¡¼­ ¹®ÀÚ¸¦ ³¯Â¥Å¸ÀÔÀ¸·Î º¯°æÇØ¾ßÇÔ.
+-- ì…ë ¥ ì‹œ ë‚ ì§œ íƒ€ì…ì— ë¬¸ì(í˜•íƒœ-ë‚ ì§œí˜•íƒœ)ë¥¼ ì…ë ¥í•´ë„ ì €ì¥ë¨.
+-- ë‚ ì§œì™€ ë¬¸ìë¥¼ ë¹¼ê¸°ëŠ” ë¶ˆê°€ëŠ¥, ê·¸ë˜ì„œ ë¬¸ìë¥¼ ë‚ ì§œíƒ€ì…ìœ¼ë¡œ ë³€ê²½í•´ì•¼í•¨.
 insert into eventDate values(
 m_no.nextval,sysdate,'2024-04-01',sysdate-to_date('2024-04-01')
 );
 
--- ¹®ÀÚÅ¸ÀÔÀ» ¼ıÀÚÅ¸ÀÔÀ¸·Î º¯°æ
+-- ë¬¸ìíƒ€ì…ì„ ìˆ«ìíƒ€ì…ìœ¼ë¡œ ë³€ê²½
 select to_number('20,000','99,999')-to_number('10,000','99,999') from dual;
 
--- nullÀ» 0À¸·Î Ä¡È¯ nvl()
+-- nullì„ 0ìœ¼ë¡œ ì¹˜í™˜ nvl()
 select salary, commission_pct, salary+(salary*nvl(commission_pct,0)) from employees;
 
 -- manager_id null ceo
@@ -101,41 +101,41 @@ order by manager_id desc;
 select nvl(to_char(manager_id),'ceo') from employees
 order by manager_id desc;
 
--- ±×·ìÇÔ¼ö : sum,avg,count(),count(*),min,max
+-- ê·¸ë£¹í•¨ìˆ˜ : sum,avg,count(),count(*),min,max
 
--- °³¼ö count
+-- ê°œìˆ˜ count
 select count(*) from employees;
--- °á°ú°ª : 107¸í
+-- ê²°ê³¼ê°’ : 107ëª…
 select count(emp_name) from employees;
--- null°ªÀÌ ÀÖÀ¸¸é Á¦¿Ü - °á°ú°ª : 106¸í
+-- nullê°’ì´ ìˆìœ¼ë©´ ì œì™¸ - ê²°ê³¼ê°’ : 106ëª…
 select count(manager_id) from employees;
 select emp_name,manager_id from employees;
 
--- sum : ÃÑÇÕ
+-- sum : ì´í•©
 select sum(salary) from employees;
 
--- avg : Æò±Õ
+-- avg : í‰ê· 
 select avg(salary) avg_sal from employees;
 
--- min : ÃÖ¼Ò°ª, max : ÃÖ´ë°ª
+-- min : ìµœì†Œê°’, max : ìµœëŒ€ê°’
 select min(salary), max(salary) from employees;
 
--- 6461 ´Ş·¯º¸´Ù ³ôÀº »ç¶÷À» Ãâ·ÂÇÏ½Ã¿À.
+-- 6461 ë‹¬ëŸ¬ë³´ë‹¤ ë†’ì€ ì‚¬ëŒì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select emp_name, salary from employees
 where salary > (select avg(salary) avg_sal from employees);
 
 select min(salary) from employees;
 
--- ÄûÁî ÃÖ¼Ò¿ù±ŞÀ» ¹Ş´Â »ç¶÷ÀÇ »ç¹ø, ÀÌ¸§À» Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ ìµœì†Œì›”ê¸‰ì„ ë°›ëŠ” ì‚¬ëŒì˜ ì‚¬ë²ˆ, ì´ë¦„ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select employee_id, emp_name,salary from employees
 where salary = (select min(salary) from employees);
 
 
--- ÄûÁî ÃÖ´ë¿ù±ŞÀ» ¹Ş´Â »ç¶÷ÀÇ »ç¹ø, ÀÌ¸§À» Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ ìµœëŒ€ì›”ê¸‰ì„ ë°›ëŠ” ì‚¬ëŒì˜ ì‚¬ë²ˆ, ì´ë¦„ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select employee_id, emp_name,salary from employees
 where salary = (select max(salary) from employees);
 
--- ºÎ¼­¹øÈ£°¡ 50¹øÀÎ »ç¿ø¸¸ ÀüÃ¼ ¿ù±Ş
+-- ë¶€ì„œë²ˆí˜¸ê°€ 50ë²ˆì¸ ì‚¬ì›ë§Œ ì „ì²´ ì›”ê¸‰
 select department_id,salary from employees;
 
 select sum(salary) from employees
@@ -143,11 +143,11 @@ where department_id = 100;
 
 select count(*) from stu_score;
 
--- ÄûÁî stu_score,kor Á¡¼ö°¡ 80Á¡ ÀÌ»óÀÎ ÇĞ»ıÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ stu_score,kor ì ìˆ˜ê°€ 80ì  ì´ìƒì¸ í•™ìƒì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select kor from stu_score
 where kor >= 80;
 
--- ÄûÁî ±¹¾îÁ¡¼ö¿¡¼­ ±¹¾îÁ¡¼ö Æò±ÕÀÌ»ó, ¿µ¾îÁ¡¼ö¿¡¼­ ¿µ¾îÁ¡¼ö Æò±ÕÀÌ»óÀÎ ÇĞ»ıÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ êµ­ì–´ì ìˆ˜ì—ì„œ êµ­ì–´ì ìˆ˜ í‰ê· ì´ìƒ, ì˜ì–´ì ìˆ˜ì—ì„œ ì˜ì–´ì ìˆ˜ í‰ê· ì´ìƒì¸ í•™ìƒì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select name ,kor, eng from stu_score
 where kor >= (select avg(kor) from stu_score) 
 and eng >= (select avg(eng) from stu_score)
@@ -166,24 +166,24 @@ and eng >= (select avg(eng) from stu_score))
 
 select * from s_info;
 
--- ÄûÁî ±¹¾îÁ¡¼ö ÃÖ°íÁ¡
+-- í€´ì¦ˆ êµ­ì–´ì ìˆ˜ ìµœê³ ì 
 select * from stu_score;
 select * from stu_score
 where kor = (select max(kor) from stu_score);
 
--- ÄûÁî ¿ù±ŞÀÌ ÃÖ´ë, ÃÖ¼Ò, Æò±ÕÀÎ »ç¿øÀ» Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ ì›”ê¸‰ì´ ìµœëŒ€, ìµœì†Œ, í‰ê· ì¸ ì‚¬ì›ì„ ì¶œë ¥í•˜ì‹œì˜¤.
 select emp_name,salary from employees
 where salary = (select max(salary) from employees)
 or salary = (select min(salary) from employees)
 or salary = (select trunc(avg(salary),-2) from employees);
 
--- ÃÖ´ë°ª
+-- ìµœëŒ€ê°’
 select emp_name, salary from employees a
 where salary = (select max(salary) from employees);
 
--- Æò±Õ°ªº¸´Ù ³·Àº »ç¿ø Áß ÃÖ´ë°ªÀ» Ãâ·ÂÇÏ½Ã¿À.
--- 1. Æò±Õ°ªº¸´Ù ³·Àº »ç¿øÀ» °Ë»ö
--- 2. °Ë»öµÈ »ç¿ø Áß¿¡ ÃÖ´ë°ªÀ» °Ë»ö
+-- í‰ê· ê°’ë³´ë‹¤ ë‚®ì€ ì‚¬ì› ì¤‘ ìµœëŒ€ê°’ì„ ì¶œë ¥í•˜ì‹œì˜¤.
+-- 1. í‰ê· ê°’ë³´ë‹¤ ë‚®ì€ ì‚¬ì›ì„ ê²€ìƒ‰
+-- 2. ê²€ìƒ‰ëœ ì‚¬ì› ì¤‘ì— ìµœëŒ€ê°’ì„ ê²€ìƒ‰
 select emp_name,salary from employees
 where salary=(
 select max(salary) from (
@@ -192,68 +192,68 @@ where salary <= (select avg(salary) from employees)
 order by salary desc)
 );
 
--- 56¸í ÃÖ´ë°ª 6400
+-- 56ëª… ìµœëŒ€ê°’ 6400
 select max(salary) from (
 select emp_name, salary from employees
 where salary <= (select avg(salary) from employees)
 order by salary desc
 );
 
--- Æò±Õº¸´Ù ³·Àº °ª
+-- í‰ê· ë³´ë‹¤ ë‚®ì€ ê°’
 select emp_name, salary from employees
 where salary <= (select avg(salary) from employees)
 order by salary desc;
 
--- ¹®ÀÚÇÔ¼ö
--- lpad,rpad ºó °ø¹é Ã¤¿ì±â
+-- ë¬¸ìí•¨ìˆ˜
+-- lpad,rpad ë¹ˆ ê³µë°± ì±„ìš°ê¸°
 select emp_name,lpad(emp_name,15,'#') from employees;
 select emp_name,rpad(emp_name,20,'@') from employees;
--- ltrim, rtrim ÁöÁ¤ÇÑ ¹®ÀÚ¸¦ Àß¶ó³»°í Ãâ·Â
+-- ltrim, rtrim ì§€ì •í•œ ë¬¸ìë¥¼ ì˜ë¼ë‚´ê³  ì¶œë ¥
 select emp_name,ltrim(emp_name,'Do') from employees;
 
 -- ko20240001
 select 'ko20240001', ltrim('ko20240001','ko2024') from dual;
 
--- substr(µ¥ÀÌÅÍ, ¼ø¼­, °³¼ö) ex) substr('abcdefg',3,3) -> cde
+-- substr(ë°ì´í„°, ìˆœì„œ, ê°œìˆ˜) ex) substr('abcdefg',3,3) -> cde
 select emp_name, substr(emp_name,3,4) from employees;
 
 select job_id from employees;
 
--- ÄûÁî job_id ¾Õ µÎ±ÛÀÚ¿Í »ç¿ø¹øÈ£¸¦ °áÇÕÇØ¼­ Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ job_id ì• ë‘ê¸€ìì™€ ì‚¬ì›ë²ˆí˜¸ë¥¼ ê²°í•©í•´ì„œ ì¶œë ¥í•˜ì‹œì˜¤.
 select substr(job_id,0,2)||employee_id from employees; 
 
--- length : ¹®ÀÚ¿­ÀÇ ±æÀÌ
+-- length : ë¬¸ìì—´ì˜ ê¸¸ì´
 select emp_name, length(emp_name) from employees
 where length(emp_name)>15;
 
--- ³¯Â¥ÇÔ¼ö +,- °¡´É, ³¯Â¥ µ¥ÀÌÅÍ³¢¸® ´õÇÏ±â ¾ÈµÊ.
--- ³¯Â¥µ¥ÀÌÅÍ + ¼ıÀÚ °¡´É
+-- ë‚ ì§œí•¨ìˆ˜ +,- ê°€ëŠ¥, ë‚ ì§œ ë°ì´í„°ë¼ë¦¬ ë”í•˜ê¸° ì•ˆë¨.
+-- ë‚ ì§œë°ì´í„° + ìˆ«ì ê°€ëŠ¥
 select sysdate+1 from dual;
 
--- ³¯Â¥µ¥ÀÌÅÍ -  ³¯Â¥µ¥ÀÌÅÍ °¡´É
+-- ë‚ ì§œë°ì´í„° -  ë‚ ì§œë°ì´í„° ê°€ëŠ¥
 select sysdate - hire_date from employees;
--- ³¯Â¥µ¥ÀÌÅÍ + ³¯Â¥µ¥ÀÌÅÍ ºÒ°¡´É
+-- ë‚ ì§œë°ì´í„° + ë‚ ì§œë°ì´í„° ë¶ˆê°€ëŠ¥
 select sysdate + hire_date from employees;
 
 select sysdate,trunc(sysdate,'month'),round(sysdate,'month') from dual;
 
 select round(sysdate,'year') from dual;
 
--- °³¿ù ¼ö Ãß°¡,Ãà¼Ò
+-- ê°œì›” ìˆ˜ ì¶”ê°€,ì¶•ì†Œ
 select sysdate,add_months(sysdate, -2) from dual;
 
-select emp_name ||' '|| to_char(hire_date,'yyyy')||'³â'
-||to_char(hire_date,'mm')||'¿ù'
-||to_char(hire_date,'dd')||'ÀÏ'
+select emp_name ||' '|| to_char(hire_date,'yyyy')||'ë…„'
+||to_char(hire_date,'mm')||'ì›”'
+||to_char(hire_date,'dd')||'ì¼'
 ||to_char(hire_date,'day') from employees;
 
-select emp_name ||' '|| to_char(hire_date,'yyyy"³â"mm"¿ù"dd"ÀÏ" day') from employees;
+select emp_name ||' '|| to_char(hire_date,'yyyy"ë…„"mm"ì›”"dd"ì¼" day') from employees;
 
--- ÄûÁî »ç¿ø¸í, ÀÚ¸®¼ö 9ÀÚ¸® ºó°ø¹é 0À¸·Î Ç¥½Ã salary*1400 ¾Õ¿¡ ¿øÈ­ Ç¥½Ã¿Í ½°Ç¥¸¦ ³Ö¾î Ãâ·ÂÇÏ½Ã¿À.
+-- í€´ì¦ˆ ì‚¬ì›ëª…, ìë¦¬ìˆ˜ 9ìë¦¬ ë¹ˆê³µë°± 0ìœ¼ë¡œ í‘œì‹œ salary*1400 ì•ì— ì›í™” í‘œì‹œì™€ ì‰¼í‘œë¥¼ ë„£ì–´ ì¶œë ¥í•˜ì‹œì˜¤.
 select emp_name, to_char(salary*1400,'L000,000,000') won from employees
 order by won desc;
 
--- ÀÚ½ÅÀÇ »ıÀÏ°ú ÀÚ½ÅÀÇ »ıÀÏÀÌ ¼ÓÇÑ ´Ù¸£ÀÌ ¸¶Áö¸·³¯Â¥
+-- ìì‹ ì˜ ìƒì¼ê³¼ ìì‹ ì˜ ìƒì¼ì´ ì†í•œ ë‹¤ë¥´ì´ ë§ˆì§€ë§‰ë‚ ì§œ
 -- '2010-10-10'
 select trunc(to_date('2010-10-10'),'month'),last_day('2010-10-10') from dual;
 
@@ -261,27 +261,27 @@ select * from member;
 
 desc member;
 
--- DDL column Ãß°¡, »èÁ¦, ¼öÁ¤
--- commit, rollbackÀÌ ¾ÈµÊ. ¹Ù·Î ÀúÀå
+-- DDL column ì¶”ê°€, ì‚­ì œ, ìˆ˜ì •
+-- commit, rollbackì´ ì•ˆë¨. ë°”ë¡œ ì €ì¥
 alter table member add gender varchar2(6) default 'female' not null;
 update member set gender='male';
 
--- ÄÃ·³»èÁ¦ - commit, rollbackÀÌ ¾ÈµÊ. ¹Ù·Î ÀúÀå
+-- ì»¬ëŸ¼ì‚­ì œ - commit, rollbackì´ ì•ˆë¨. ë°”ë¡œ ì €ì¥
 -- alter table member drop column phone;
 
--- ÄÃ·³¼öÁ¤ - ÄÃ·³ÀÌ¸§ º¯°æ, Å¸ÀÔº¯°æ
+-- ì»¬ëŸ¼ìˆ˜ì • - ì»¬ëŸ¼ì´ë¦„ ë³€ê²½, íƒ€ì…ë³€ê²½
 alter table member rename column name to stu_name;
 select * from member;
 
--- Å¸ÀÔº¯°æ
+-- íƒ€ì…ë³€ê²½
 alter table member modify(stu_name varchar2(50));
 
--- µ¥ÀÌÅÍ¿¡ ¹®ÀÚ µé¾îÀÖÀ¸¸é number·Î Å¸ÀÔ º¯°æ ºÒ°¡´É,
--- ±âÁ¸ µé¾îÀÖ´Â µ¥ÀÌÅÍº¸´Ù °ø°£ÀÌ ÀÛÀ¸¸é º¯°æ ºÒ°¡´É
-update member set stu_name='È«';
+-- ë°ì´í„°ì— ë¬¸ì ë“¤ì–´ìˆìœ¼ë©´ numberë¡œ íƒ€ì… ë³€ê²½ ë¶ˆê°€ëŠ¥,
+-- ê¸°ì¡´ ë“¤ì–´ìˆëŠ” ë°ì´í„°ë³´ë‹¤ ê³µê°„ì´ ì‘ìœ¼ë©´ ë³€ê²½ ë¶ˆê°€ëŠ¥
+update member set stu_name='í™';
 alter table member modify(stu_name varchar2(6));
 
--- ÄÃ·³ÀÇ Å¸ÀÔÀ» º¯°æÇÏ·Á¸é ÄÃ·³µ¥ÀÌÅÍ°¡ ºó°ø¹éÀÌ°Å³ª nullÀÏ ¶§ °¡´É
+-- ì»¬ëŸ¼ì˜ íƒ€ì…ì„ ë³€ê²½í•˜ë ¤ë©´ ì»¬ëŸ¼ë°ì´í„°ê°€ ë¹ˆê³µë°±ì´ê±°ë‚˜ nullì¼ ë•Œ ê°€ëŠ¥
 -- alter table member modify(stu_name number(4));
 
 commit;

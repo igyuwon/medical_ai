@@ -1,40 +1,40 @@
--- Å×ÀÌºí »ı¼º
+-- í…Œì´ë¸” ìƒì„±
 create table emp01 (
 emp_id number(6),
 emp_name varchar2(80),
 hire_date date
 );
 
--- Å×ÀÌºí»ı¼º - Å×ÀÌºí±¸Á¶ ¹× µ¥ÀÌÅÍ ¸ğµÎ º¹»ç
+-- í…Œì´ë¸”ìƒì„± - í…Œì´ë¸”êµ¬ì¡° ë° ë°ì´í„° ëª¨ë‘ ë³µì‚¬
 create table emp02 as
 select * from employees;
 
--- Å×ÀÌºí ±¸Á¶¸¸ º¹»çÇÏ±â
+-- í…Œì´ë¸” êµ¬ì¡°ë§Œ ë³µì‚¬í•˜ê¸°
 create table emp03 as
 select * from employees where 1=2;
 
--- Å×ÀÌºí ±¸Á¶°¡ ´Ù¸£¸é¼­, µ¥ÀÌÅÍ¸¦ º¹»çÇÏ±â ( 3°³ -> 14°³ )
+-- í…Œì´ë¸” êµ¬ì¡°ê°€ ë‹¤ë¥´ë©´ì„œ, ë°ì´í„°ë¥¼ ë³µì‚¬í•˜ê¸° ( 3ê°œ -> 14ê°œ )
 insert into emp01(emp_id,emp_name,hire_date)
 select employee_id,emp_name,hire_date from employees;
 
--- 1°³ µ¥ÀÌÅÍ Ãß°¡
+-- 1ê°œ ë°ì´í„° ì¶”ê°€
 insert into emp01 values (
- 207,'È«±æµ¿','2024-04-26'
+ 207,'í™ê¸¸ë™','2024-04-26'
 );
 
--- Å×ÀÌºíÀÌ ±¸Á¶°¡ °°À¸¸é¼­ µ¥ÀÌÅÍ¸¸ º¹»ç ( ±¸Á¶°¡ °°Àº °æ¿ì )
+-- í…Œì´ë¸”ì´ êµ¬ì¡°ê°€ ê°™ìœ¼ë©´ì„œ ë°ì´í„°ë§Œ ë³µì‚¬ ( êµ¬ì¡°ê°€ ê°™ì€ ê²½ìš° )
 insert into emp03
 select * from employees;
 
--- ÄÃ·³ Å¸ÀÔº¯°æ
+-- ì»¬ëŸ¼ íƒ€ì…ë³€ê²½
 alter table member
 modify(stu_name varchar2(30));
 
--- ÄÃ·³ »èÁ¦
+-- ì»¬ëŸ¼ ì‚­ì œ
 alter table member
 drop column pw;
 
--- ÄÃ·³ Ãß°¡
+-- ì»¬ëŸ¼ ì¶”ê°€
 alter table member
 add (pw varchar2(30));
 
@@ -44,37 +44,37 @@ select mno,id,pw,stu_name,gender from member;
 select * from member;
 
 insert into member values (
- seq_mno.nextval,'fff','±èÀ¯½Å','male','1111'
+ seq_mno.nextval,'fff','ê¹€ìœ ì‹ ','male','1111'
 );
 
--- ÄÃ·³¼ø¼­ º¯°æ
--- ÄÃ·³¼û±â±â
+-- ì»¬ëŸ¼ìˆœì„œ ë³€ê²½
+-- ì»¬ëŸ¼ìˆ¨ê¸°ê¸°
 alter table member modify stu_name invisible;
 alter table member modify gender invisible;
--- ÄÃ·³º¸¿©ÁÖ±â
+-- ì»¬ëŸ¼ë³´ì—¬ì£¼ê¸°
 alter table member modify stu_name visible;
 alter table member modify gender visible;
 
--- ÄÃ·³ ÀÏ½ÃÀû »ç¿ë Á¦ÇÑ
+-- ì»¬ëŸ¼ ì¼ì‹œì  ì‚¬ìš© ì œí•œ
 alter table member
 set unused(id);
 
--- »ç¿ë Á¦ÇÑ ÇØÁ¦
+-- ì‚¬ìš© ì œí•œ í•´ì œ
 alter table member
 drop unused columns;
 
 
--- Å×ÀÌºí »èÁ¦
+-- í…Œì´ë¸” ì‚­ì œ
 --drop table s_info;
 -- drop table m_date;
 drop table emp03;
 
--- Å×ÀÌºí ÀÌ¸§ º¯°æ
+-- í…Œì´ë¸” ì´ë¦„ ë³€ê²½
 rename emp01 to employees01;
 
--- [ ¹«°á¼º Á¦¾àÁ¶°Ç ]
--- foreign key´Â ´Ù¸¥ Å×ÀÌºí¿¡¼­ µ¥ÀÌÅÍ ÀÔ·Â½Ã 
--- ¼±¾ğµÇ¾î ÀÖ´Â ±âÁ¸ Å×ÀÌºí¿¡ ÀÔ·ÂÇÏ·Á´Â µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö È®ÀÎ
+-- [ ë¬´ê²°ì„± ì œì•½ì¡°ê±´ ]
+-- foreign keyëŠ” ë‹¤ë¥¸ í…Œì´ë¸”ì—ì„œ ë°ì´í„° ì…ë ¥ì‹œ 
+-- ì„ ì–¸ë˜ì–´ ìˆëŠ” ê¸°ì¡´ í…Œì´ë¸”ì— ì…ë ¥í•˜ë ¤ëŠ” ë°ì´í„°ê°€ ìˆëŠ”ì§€ í™•ì¸
 
 -- drop table employees01;
 -- drop table emp02;
@@ -89,18 +89,18 @@ gender varchar2(6)
 );
 
 insert into member values(
-'aaa','1111','È«±æµ¿','male'
+'aaa','1111','í™ê¸¸ë™','male'
 );
 
 insert into member(id,pw,name) values(
-'bbb','1111','À¯°ü¼ø'
+'bbb','1111','ìœ ê´€ìˆœ'
 );
 
 insert into member(id,pw) values(
 'ccc','1111'
 );
 
---¿¡·¯
+--ì—ëŸ¬
 insert into member(id) values(
 'ddd'
 );
@@ -109,10 +109,10 @@ insert into member(id,pw) values(
 );
 
 insert into member(id,pw,name) values(
-'a','1111','È«±æµ¿'
+'a','1111','í™ê¸¸ë™'
 );
 
--- Á¦¾àÁ¶°Ç : not null -  null°ª¸¸ Á¦¿Ü
+-- ì œì•½ì¡°ê±´ : not null -  nullê°’ë§Œ ì œì™¸
 create table emp02(
 empno number(4) not null,
 ename varchar2(10) not null,
@@ -121,10 +121,10 @@ deptno number(2)
 );
 
 insert into emp02 values(
-1,'À¯°ü¼ø','1',1
+1,'ìœ ê´€ìˆœ','1',1
 );
 
--- Á¦¾àÁ¶°Ç : unique -  Áßº¹¸¸ Á¦°Å, nullÇã¿ë
+-- ì œì•½ì¡°ê±´ : unique -  ì¤‘ë³µë§Œ ì œê±°, nullí—ˆìš©
 create table emp03(
 empno number(4) unique,
 ename varchar2(10) not null,
@@ -133,33 +133,33 @@ deptno number(2)
 );
 
 insert into emp03 values(
-'1','È«±æµ¿','1',1
+'1','í™ê¸¸ë™','1',1
 );
 
 insert into emp03 values(
-null,'È«±æµ¿','1',1
+null,'í™ê¸¸ë™','1',1
 );
 
 insert into emp03 values(
-'3','ÀÌ¼ø½Å','2',2
+'3','ì´ìˆœì‹ ','2',2
 );
 
 insert into emp03 values(
-null,'°­°¨Âù','2',2
+null,'ê°•ê°ì°¬','2',2
 );
 
 insert into emp03 values(
-1,'±è±¸','3',3
+1,'ê¹€êµ¬','3',3
 );
 
--- ÄûÁî. 1 È«±æµ¿ °Ë»öÇÏ½Ã¿À.
+-- í€´ì¦ˆ. 1 í™ê¸¸ë™ ê²€ìƒ‰í•˜ì‹œì˜¤.
 select * from emp03
 where empno='1';
 
--- ÄûÁî. null È«±æµ¿ °Ë»öÇÏ½Ã¿À.
+-- í€´ì¦ˆ. null í™ê¸¸ë™ ê²€ìƒ‰í•˜ì‹œì˜¤.
 select * from emp03
-where empno is null and ename='È«±æµ¿';
--- ÄûÁî. nullÀÎ ¸ğµç »ç¶÷À» °Ë»öÇÏ½Ã¿À.
+where empno is null and ename='í™ê¸¸ë™';
+-- í€´ì¦ˆ. nullì¸ ëª¨ë“  ì‚¬ëŒì„ ê²€ìƒ‰í•˜ì‹œì˜¤.
 select * from emp03
 where empno is null;
 
@@ -175,12 +175,12 @@ Job varchar(9),
 Deptno number(2)
 );
 
--- 5°³ null,1,2,3,1
+-- 5ê°œ null,1,2,3,1
 insert into emp01 values(
-1,'È«±æµ¿','0001',1
+1,'í™ê¸¸ë™','0001',1
 );
 insert into emp01 values(
-null,'È«±æµ¿','0001',1
+null,'í™ê¸¸ë™','0001',1
 );
 
 select * from emp01;
@@ -188,10 +188,10 @@ select * from emp01;
 select * from emp01
 where empno=3;
 
--- foreign key (¿Ü·¡Å°)
+-- foreign key (ì™¸ë˜í‚¤)
 -- drop table emp01;
 
--- emp01 Å×ÀÌºí »ı¼º
+-- emp01 í…Œì´ë¸” ìƒì„±
 create table emp01 (
 empno number(4) primary key,
 ename varchar2(20) not null,
@@ -200,37 +200,37 @@ deptno number(6)
 );
 
 insert into emp01 values(
-1,'È«±æµ¿','0001',10
+1,'í™ê¸¸ë™','0001',10
 );
 
 insert into emp01 values(
-2,'À¯°ü¼ø','0002',20
+2,'ìœ ê´€ìˆœ','0002',20
 );
 
 insert into emp01 values(
-3,'ÀÌ¼ø½Å','0002',30
+3,'ì´ìˆœì‹ ','0002',30
 );
 
 -- deptno 10-270
 insert into emp01 values(
-4,'±è±¸','0003',270
+4,'ê¹€êµ¬','0003',270
 );
 
--- ¿Ü·¡Å°°¡ »èÁ¦°¡ µÇ¸é, deptno¿¡ ¾ø´Â µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÀ» ÇØµµ ÀúÀåÀÌ µÊ.
+-- ì™¸ë˜í‚¤ê°€ ì‚­ì œê°€ ë˜ë©´, deptnoì— ì—†ëŠ” ë°ì´í„°ë¥¼ ì…ë ¥ì„ í•´ë„ ì €ì¥ì´ ë¨.
 -- error
 insert into emp01 values(
-5,'°­°¨Âù','0004',1
+5,'ê°•ê°ì°¬','0004',1
 );
 
--- foreign key »èÁ¦
+-- foreign key ì‚­ì œ
 alter table emp01
 drop constraint fk_deptno;
 
 commit;
 
--- emp01 foreign key Ãß°¡
--- fk_deptno º°Äª
--- add constraint º°Äª foreign key(ÇöÀçÄÃ·³) references ´Ù¸¥Å×ÀÌºí(ÄÃ·³ÀÌ¸§)
+-- emp01 foreign key ì¶”ê°€
+-- fk_deptno ë³„ì¹­
+-- add constraint ë³„ì¹­ foreign key(í˜„ì¬ì»¬ëŸ¼) references ë‹¤ë¥¸í…Œì´ë¸”(ì»¬ëŸ¼ì´ë¦„)
 alter table emp01
 add constraint fk_deptno foreign key(deptno)
 references dept01(deptno)
@@ -242,17 +242,17 @@ select * from dept01;
 alter table emp01
 modify(deptno number(6));
 
--- dept01 Å×ÀÌºí »ı¼º
+-- dept01 í…Œì´ë¸” ìƒì„±
 create table dept01(
 deptno number(6) primary key,
 dept_name varchar2(80)
 );
 
--- ÄÃ·³ÀÇ ³»¿ëÃß°¡
+-- ì»¬ëŸ¼ì˜ ë‚´ìš©ì¶”ê°€
 insert into dept01 (deptno,dept_name)
 select department_id,department_name from departments;
 
--- ÄÃ·³ÀÇ Å¸ÀÔ º¯°æ
+-- ì»¬ëŸ¼ì˜ íƒ€ì… ë³€ê²½
 alter table dept01
 modify ( dept_name varchar2(80));
 
@@ -268,10 +268,10 @@ bcontent varchar2(3000)
 );
 
 insert into board values(
-1,'aaa','°Ô½Ã±Û1','³»¿ë1'
+1,'aaa','ê²Œì‹œê¸€1','ë‚´ìš©1'
 );
 insert into board values(
-8,'bbb','°Ô½Ã±Û8','³»¿ë8'
+8,'bbb','ê²Œì‹œê¸€8','ë‚´ìš©8'
 );
 
 commit;
@@ -282,7 +282,7 @@ alter table board
 add constraint fk_id foreign key (id)
 references member(id);
 
--- comment Å×ÀÌºí ´ñ±ÛÅ×ÀÌºí
+-- comment í…Œì´ë¸” ëŒ“ê¸€í…Œì´ë¸”
 
 create table comments(
  cno number(4) primary key,
@@ -292,14 +292,14 @@ create table comments(
  constraint fk_bno foreign key(bno)
  references board(bno)
 );
--- ´ñ±Û´Ş±â
+-- ëŒ“ê¸€ë‹¬ê¸°
 insert into comments values (
-5,5,'1111','´ñ±Û³»¿ë4'
+5,5,'1111','ëŒ“ê¸€ë‚´ìš©4'
 );
 
--- fk¸¦ µî·ÏÇÒ¶§ ¼³Á¤ 
--- fkÅ°·Î µî·ÏµÇ¾î ÀÖ´Â ¸ğµç µ¥ÀÌÅÍ¸¦ »èÁ¦½ÃÅ°´Â °Í.
--- fkÅ°·Î µî·ÏµÇ¾î ÀÖ´Â µ¥ÀÌÅÍ´Â ¸ğµÎ Á¸Àç ½ÃÅ°´Â °Í.
+-- fkë¥¼ ë“±ë¡í• ë•Œ ì„¤ì • 
+-- fkí‚¤ë¡œ ë“±ë¡ë˜ì–´ ìˆëŠ” ëª¨ë“  ë°ì´í„°ë¥¼ ì‚­ì œì‹œí‚¤ëŠ” ê²ƒ.
+-- fkí‚¤ë¡œ ë“±ë¡ë˜ì–´ ìˆëŠ” ë°ì´í„°ëŠ” ëª¨ë‘ ì¡´ì¬ ì‹œí‚¤ëŠ” ê²ƒ.
 
 delete board where bno=5;
 
@@ -310,7 +310,7 @@ select * from comments;
 
 select * from board;
 
--- ¿Ü·¡Å° »èÁ¦
+-- ì™¸ë˜í‚¤ ì‚­ì œ
 alter table board drop constraints fk_id;
 alter table comments drop constraints fk_bno;
 
@@ -323,63 +323,56 @@ alter table board
 add constraint fk_id foreign key (id)
 references member(id);
 
--- fk_cno°¡ »èÁ¦°¡ µÇµµ·Ï ÇÔ.
+-- fk_cnoê°€ ì‚­ì œê°€ ë˜ë„ë¡ í•¨.
 alter table comments 
 add contraint fk_bno foreign key(bno)
 references comments(bno) on delete cascade;
 
 delete comments where cno=2;
 
---- check Á¦¾àÁ¶°Ç Æ¯Á¤°ªÀÇ ¹üÀ§, Æ¯Á¤°©¸¸ ÀÔ·ÂµÇµµ·Ï ÇÔ.
+--- check ì œì•½ì¡°ê±´ íŠ¹ì •ê°’ì˜ ë²”ìœ„, íŠ¹ì •ê°‘ë§Œ ì…ë ¥ë˜ë„ë¡ í•¨.
 create table emp(
 empno number(4) primary key,
 ename varchar2(20) not null,
-job varchar2(9) default '0001', -- ÄÃ·³¿¡ µ¥ÀÌÅÍ¸¦ ³ÖÁö ¾ÊÀ¸¸é ÀÚµ¿À¸·Î 0001ÀÌ ÀúÀåµÊ.
+job varchar2(9) default '0001', -- ì»¬ëŸ¼ì— ë°ì´í„°ë¥¼ ë„£ì§€ ì•Šìœ¼ë©´ ìë™ìœ¼ë¡œ 0001ì´ ì €ì¥ë¨.
 sal number(7,2) check(sal between 2000 and 20000),
-gender varchar2(6) check(gender in('³²ÀÚ','¿©ÀÚ'))
+gender varchar2(6) check(gender in('ë‚¨ì','ì—¬ì'))
 );
 
 insert into emp(empno,ename,job,sal,gender) values(
-1,'È«±æµ¿','0002',3000,'³²ÀÚ'
+1,'í™ê¸¸ë™','0002',3000,'ë‚¨ì'
 );
 
 insert into emp(empno,ename,job,sal,gender) values(
-2,'À¯°ü¼ø','0003',4000,'¿©ÀÚ'
+2,'ìœ ê´€ìˆœ','0003',4000,'ì—¬ì'
 );
 
--- ¿¡·¯ ³²ÀÚ,¿©ÀÚ¸¸ ÀÔ·Â°¡´É
+-- ì—ëŸ¬ ë‚¨ì,ì—¬ìë§Œ ì…ë ¥ê°€ëŠ¥
 insert into emp(empno,ename,job,sal,gender) values(
-3,'ÀÌ¼ø½Å','0004',5000,'³²'
-);
-
-insert into emp(empno,ename,job,sal,gender) values(
-3,'ÀÌ¼ø½Å','0004',5000,'³²ÀÚ'
+3,'ì´ìˆœì‹ ','0004',5000,'ë‚¨'
 );
 
 insert into emp(empno,ename,job,sal,gender) values(
-4,'°­°¨Âù','0005',2000,'³²ÀÚ'
+3,'ì´ìˆœì‹ ','0004',5000,'ë‚¨ì'
 );
 
--- ¿¡·¯ 2000~20000
 insert into emp(empno,ename,job,sal,gender) values(
-5,'±è±¸','0006',30000,'³²ÀÚ'
+4,'ê°•ê°ì°¬','0005',2000,'ë‚¨ì'
+);
+
+-- ì—ëŸ¬ 2000~20000
+insert into emp(empno,ename,job,sal,gender) values(
+5,'ê¹€êµ¬','0006',30000,'ë‚¨ì'
 );
 
 -- check 2000-20000
 insert into emp(empno,ename,job,sal,gender) values(
-5,'±è±¸','0006',20000,'³²ÀÚ'
+5,'ê¹€êµ¬','0006',20000,'ë‚¨ì'
 );
 
--- job default '0001' - job ÀÔ·ÂÀÌ ¾øÀ¸¸é '0001'
+-- job default '0001' - job ì…ë ¥ì´ ì—†ìœ¼ë©´ '0001'
 insert into emp(empno,ename,sal,gender) values(
-6,'±èÀ¯½Å',10000,'³²ÀÚ'
+6,'ê¹€ìœ ì‹ ',10000,'ë‚¨ì'
 );
 
 select * from emp;
-
-
-
-
-
-
-
